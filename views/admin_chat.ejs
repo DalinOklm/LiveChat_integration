@@ -1,0 +1,2029 @@
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link rel="stylesheet" href="https://www.w3schools.com/lib/w3-theme-blue-grey.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+<script src="/socket.io/socket.io.js"></script>
+
+<style>
+    body{
+    /* background-color: #3B4048; */
+    background-color: #ccc;
+    color: white;
+}
+
+.namespaces{
+    /* background-color: #282c34; */
+    background-color: #ccc;
+    min-height: 100vh;
+    color: #ABB2BF;
+    text-align: center;
+
+}
+
+.namespaces img{
+    margin-top: 10px;
+    background-color: #ABB2BF;
+    border-radius: 10px;
+    cursor: pointer;
+    width:45px;
+}
+
+.room-list{
+    padding-left: 0px;
+}
+
+.room-list li{
+    cursor: pointer;
+    list-style-type: none;
+    padding: 0px 15px;
+}
+
+.room-list li span{
+    margin-right: 5px;
+}
+
+.room-list li.active{
+    background-color: #61AFEF;
+    color: #fff
+}
+
+.rooms{
+    background: #3B4048;
+    min-height: 100vh;
+    color: #ABB2BF;
+    
+}
+
+
+.chat-panel{
+    background-color: #fff;
+    min-height: 100vh;
+    position: relative;
+    padding-top: 10px;
+}
+.chat-panel .curr-room-text{
+    color: #282c34;
+    font-size: 26px;
+}
+.curr-room-num-users, .search{
+    font-size: 14px;
+    color: #ABB2BF;
+    position: realtive;
+}
+
+.search{
+    margin-top: 5px;
+}
+
+.search span{
+    position: absolute;
+    left: 25px;
+    top: 10px;
+}
+
+.search input{
+    padding-left: 30px;
+}
+
+.message-form { 
+    margin: 0px; margin-bottom: 10px;
+    position: absolute;
+    bottom: 0;
+    width: 98%
+}
+input { 
+    width: 100%; 
+    height: 34px; 
+    color: #ABB2BF; 
+    border: 1px solid #3B4048; 
+    border-radius: 5px;
+    padding-left: 5px;
+}
+#messages { 
+    list-style-type: none; margin: 0; padding: 0; 
+    color: #3B4048;
+    max-height: 85%;
+    overflow: scroll;
+}
+#messages li .user-image{
+    /* width: 50px; */
+    /* display: inline-block; */
+}
+#messages li .user-message{
+    margin-left: 10px;
+    color: #222;
+}
+
+#messages li .user-name-time span{
+    color: #ABB2BF;
+}
+
+#messages li { 
+    padding: 5px 10px; 
+    display: flex;
+    align-items: stretch;
+}
+
+
+
+
+
+
+
+/********************* chat ********************************/
+/********************* chat ********************************/
+/********************* chat ********************************/
+/********************* chat ********************************/
+/********************* chat ********************************/
+/********************* chat ********************************/
+/********************* chat ********************************/
+/********************* chat ********************************/
+
+/* .chat-revealed
+{
+    position: relative;
+    left: 400px;
+    top: 200px;
+  background: rgb(236, 6, 141);
+} */
+
+/* 
+.chat-revealed:hover
+{
+    border-radius: 50%;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    
+} */
+
+#initForm
+{
+  /* top: -70px;
+  left: -20px; */
+   /* background-color: white;
+   box-shadow: 0px 2px 15px rgba(0, 0, 0, 0.1); */
+}
+
+#chat-container
+{
+  position: relative;
+  height: 440px;
+  width: 330px;
+  top: -70px;
+  left: -140px;
+   display: none;
+   background-color: white;
+   box-shadow: 0px 2px 15px rgba(0, 0, 0, 0.1);
+}
+/* 
+.jumbotron
+{
+    position: relative;
+    top: 100px;
+    left: 200px;
+} */
+
+#chat_bution
+{
+  margin-top: 20px;
+}
+
+
+#chat-container{
+  /* position: fixed; */
+  position: relative;
+    width: 420px;
+    height: 465px;
+    /* max-width: 450px !important; */
+    right: -475px;
+    margin: auto;
+    margin-top: 4%;
+    margin-bottom: 50px;
+    font-family: sans-serif;
+    letter-spacing: 0.5px;
+}
+
+.containerShadow{
+    width: 850px;
+    height: 616;
+    border-style: solid;
+    border: red;
+    border-radius: 20%;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+            
+}
+/* 
+img{
+    max-width: 100%;
+    border-radius: 60%;
+} */
+.msg-header{
+    border: 1px solid #ccc;
+    width: 100%;
+    height: 10%;
+    border-bottom: none;
+    display: inline-block;
+    background-color:rgb(236, 6, 141)
+}
+.msg-header-img
+{
+    border-radius: 50%;
+    width: 40px;
+    margin-left: 5%;
+    margin-top: 12px;
+    float: left;
+}
+.chat_active
+{
+    width: 120px;
+    float: left;
+    margin-top: 10px;
+}
+.chat_active h4
+{
+font-size: 20px;
+margin-left: 10px;
+color: #fff;
+}
+.chat_active h6
+{
+font-size: 10px;
+margin-left: 10px;
+line-height: 2px;
+color: #fff;
+}
+.header-icons
+{
+    width: 120px;
+    float: right;
+    margin-top: 12px;
+    margin-right: 10px;
+}
+.header-icons .fa
+{
+    color: #fff;
+    cursor: pointer;
+    margin: 10px;
+}
+.chats
+{
+    padding-left: 0%;
+    padding-right: 0%;
+    padding-top: 30px;
+    padding-bottom: 0%;
+}
+.msg-page
+{
+    height: 716px;
+    overflow-y: auto;
+    /* border-left-style: ridge;
+    border-right-style: ridge; */
+    border-bottom: #777;
+}
+.received-chats-img
+{
+    display: inline-block;
+    width: 20px;
+    float: left;
+}
+.received-msg
+{
+    display: inline-block;
+    padding: 0 0 0 10px;
+    vertical-align: top;
+    width: 92%;
+}
+.received-msg-inbox
+{
+    width: 57%;
+}
+.received-msg-inbox p
+{
+    background: #efefef none repeat scroll 0 0;
+    border-radius: 0px 20px 20px 20px;
+    color: #646464;
+    font-size: 14px;
+    margin: 0;
+    padding: 5px 10px 5px 12px;
+    width: 100%;
+}
+.time
+{
+    color: #777;
+    display: block;
+    font-size: 12px;
+    margin: 8px 0 0;
+}
+.credit
+{
+    color: #777;
+    display: block;
+    font-size: 17px;
+    margin: 8px 0 10px 10px;
+    float: right;
+    width: 30%;
+}
+#creditIcon
+{
+    color: red;
+}
+.outgoing-chats
+{
+    overflow: hidden;
+    margin: 26px 20px;
+}
+.outgoing-chats-msg p
+{
+    background: rgb(236, 6, 141) none repeat scroll 0 0;
+    color: #fff;
+    border-radius: 20px 0px 20px 20px;
+    font-size: 14px;
+    margin: 0;
+    color: #fff;
+    padding: 5px 10px 5px 12px;
+    width: 100%;
+}
+.outgoing-chats-msg
+{
+    float: left;
+    width: 46%;
+    margin-left: 45%;
+}
+.outgoing-chats-img
+{
+    display: inline-block;
+    width: 20px;
+    float: right;
+}
+.msg-bottom
+{
+position: relative;
+height: 70px;
+width: 100%;
+border-radius: 20px 20px 20px 20px;
+background-color: #fff; box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+.bottom-icons .fa 
+{
+  color: #fff;
+  padding: 5px;
+}
+.fa-paper-plane
+{
+    color: #777;
+}
+.fa-paper-plane:hover
+{
+    color: #777;
+background-color: #fff; box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+#chat_input-group
+{
+    float: right;
+    margin-top: 13px;
+    margin-right: 20px;
+    outline: none !important;
+    border-radius: 20px;
+    width: 90% !important;
+}
+
+
+.form-control
+{
+  width: 70%;
+    border: none !important;
+    border-radius: 20px !important;
+}
+
+#inputmsg
+{
+  width: 70%;
+}
+.chat_input-group-text
+{
+    background: transparent !important;
+    border: none !important;
+}
+
+
+/* *************** modal ****************** */
+/* The Modal (background) */
+.modal {
+  display: none; /* Hidden by default */
+  position: fixed; /* Stay in place */
+  z-index: 1; /* Sit on top */
+  padding-top: 100px; /* Location of the box */
+  left: 0;
+  top: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+  background-color: rgb(0,0,0); /* Fallback color */
+  background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+}
+
+/* Modal Content */
+.modal-content {
+  background-color: #fefefe;
+  margin: auto;
+  padding: 20px;
+  border: 1px solid #888;
+  width: 80%;
+}
+
+/* The Close Button */
+.close {
+  color: #aaaaaa;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+  color: #000;
+  text-decoration: none;
+  cursor: pointer;
+}
+</style>
+
+<header>
+    <!-- <nav class="navbar navbar-inverse navbar-fixed-top">
+        <div class="container-fluid">
+          <div class="navbar-header">
+              <h3 class="text-muted" style="color: white;">FlowerBoss</h3>
+              <h3>      
+                <button class="w3-button w3-padding-large" title="Notifications"> <i class="fa fa-bell"></i><span class="w3-badge w3-right w3-small w3-green">3</span></button></h3>
+           <h3> 7 Customers</h3>
+          </div>
+        </div>
+      
+      </nav> -->
+
+      <nav class="navbar navbar-inverse navbar-fixed-top">
+        <div class="container-fluid">
+          <div class="navbar-header">
+            <a class="navbar-brand" href="#">FlowerBoss</a>
+          </div>
+          <ul class="nav navbar-nav">
+            <li><h4 id="customer_total_title" style="margin-left: 20px;"><%= tota_customer_toclient %> Customers</h4></li>
+            <li class="active"> <button class="w3-button w3-padding-large" title="Notifications"> <i class="fa fa-bell"></i><span class="w3-badge w3-right w3-small w3-green">3</span></button></h3></li>
+          </ul>
+        </div>
+      </nav>
+</header>
+
+<br>
+<br>
+<br>
+
+<div class="container-fluid">
+    <!-- <div class="row">
+        <div class="col-sm-1 namespaces">
+            <div class="namespace" ns="/wiki"><img src="https://upload.wikimedia.org/wikipedia/en/thumb/8/80/Wikipedia-logo-v2.svg/103px-Wikipedia-logo-v2.svg.png"></div>
+            <div class="namespace" ns="/mozilla"><img src="https://www.mozilla.org/media/img/logos/firefox/logo-quantum.9c5e96634f92.png"></div>
+            <div class="namespace" ns="/linux"><img src="https://upload.wikimedia.org/wikipedia/commons/a/af/Tux.png"></div>
+        </div> -->
+
+
+     
+
+ <audio id="messageNotice">
+		<source src="assets/audio/messageNotice.mp3"></source>
+  </audio>
+
+  <audio id="newCustomerInstore">
+		<source src="assets/audio/newCustomerInstore.wav" type="audio/wav"></source>
+  </audio>
+
+
+        <div class="col-sm-4 rooms" >
+
+        
+                <br>
+                <br>
+                <br>
+
+              <div id="customers_list" style="width: 100%; height: 600px; overflow: auto;">
+
+                
+                <!-- <div class="well">
+                    <h4 class="text-muted"> Jhon <span>(2)</span></h4>
+                     <div>
+                         <h6 class="text-muted">Online  <span><i class="fa fa-circle" aria-hidden="true" style="color: green;"></i></span></h6>
+                        
+                          <button class="btn">View</button> 
+                         <button class="btn btn-primary">View</button>
+                       </div>
+                 </div> -->
+
+  <%
+           for (let index = 0; index < number_client_DB.length; index++) {
+      if (number_client_DB[index].name !== "tony_req") { %>
+
+       <div class="well" id='<%=number_client_DB[index].new_client_token %>_well'>
+        <h4 class="text-muted" id="<%=number_client_DB[index].new_client_token %>_client_name" >  <%= number_client_DB[index].name  %></h4>
+        <div>
+        <h6 class="text-muted"><%= number_client_DB[index].email %></h6>
+        <h6 class="text-muted" id='<%=number_client_DB[index].new_client_token %>_Online' style="width: 10%; background-color: red; color: white; ">Offline</h6>
+        <button class="btn btn-primary" onClick="buttonview_click(this.id)" id='<%=number_client_DB[index].new_client_token %>_view'>view</button>
+        <!-- <button class="btn btn-danger" onClick="buttonDelete_click(this.id)" id='<%=number_client_DB[index].new_client_token %>_delete' ">Delete</button> -->
+        
+      
+              
+             
+
+
+                        <!-- Trigger/Open The Modal -->
+                <button onClick="buttoninit_modal_Delete_click(this.id)" id='<%=number_client_DB[index].new_client_token %>_initiate_modal_delete' class="btn btn-danger">Delete chat</button>
+
+                <!-- The Modal -->
+                <div id="myModal" class="modal">
+
+                <!-- Modal content -->
+                <!-- <div class="modal-content"> -->
+                    <span class="close">&times;</span>
+                    <form class="modal-content" action="/action_page.php">
+              <div class="container">
+                <h1>Delete Chat</h1>
+                <h3 class="text-muted">Are you sure you want to delete this chat?</h3>
+              
+                <div class="clearfix">
+                  <button onClick="buttonCancel_click(this.id)" id="id='<%=number_client_DB[index].new_client_token %>_button_cancel"  type="button" class="cancelbtn btn btn-primary">Cancel</button>
+                  <button type="button" onClick="buttonDelete_click(this.id)" id='<%=number_client_DB[index].new_client_token %>_delete' class="deletebtn btn btn-danger">Delete</button>
+                </div>
+              </div>
+            </form>
+                <!-- </div> -->
+
+                </div>
+
+        
+    </div>
+
+        </div>
+
+        <%
+            }
+            
+        }    %>
+             
+             
+              <!-- <div class="well">
+                <h4 class="text-muted"> Tom (1)</h4>
+                <div>
+                    <h6 class="text-muted">Offline  <span><i class="fa fa-circle" aria-hidden="true" style="color: red;"></i></span></h6>
+                    <button class="btn btn-primary">View</button>
+                 </div>
+            </div> -->
+
+
+              </div>
+
+         
+
+        </div>
+
+        
+        
+            <div id="div_chat_panel" class="chat-panel col-sm-6"  >
+                <!-- <div class="room-header row col-6">
+                    <div class="col-sm-3"><span class="curr-room-text">Current Room</span> <span class="curr-room-num-users">Users <span class="glyphicon glyphicon-user"></span></span></div>
+                    <div class="col-sm-3 search pull-right">
+                            <span class="glyphicon glyphicon-search"></span>
+                        <input type="text" id="search-box" placeholder="Search" />
+                    </div>
+                </div>  -->
+
+                <div  id="initForm" class="jumbotron" style="display: none;">
+
+                    <label for="" style="margin-bottom: 20px;"><h3 class="text-muted" style="color: black;">Live Chat</h3></label> 
+                       
+                      <div class="form-group">
+                          <label for="username" style="color: black;">Email</label>
+                          <input name="email" value="admincount@gmail.com" type="text" class="form-control" placeholder="Enter name">
+                 
+                          <label for="username" style="color: black;">Name</label>
+                          <input id="userName" name="email" type="text" class="form-control" placeholder="Enter name">
+                 
+                          <label for="username" style="color: black;">Cellnumber</label>
+                          <input name="email" value="0874595861" type="text" class="form-control" placeholder="Enter name">
+                      </div>
+                 
+                        <button class="btn btn-primary" id="chat_bution" style="margin-bottom: 10px;">Submit</button>
+                        
+                       </div> 
+    
+              
+    
+               
+                 <!---************************** Chat skeleton **************************-->
+                    <!---************************** Chat skeleton **************************-->
+                    <!-- <div class="container">
+                     <div class="row">
+                         <div class="col-md-6 col-sm-6 col-xs-6">
+    
+                         </div>
+                     </div>
+                    </div> -->
+    
+
+                    <!-- <div id="chat-container" style="display: none;">
+
+
+                        <div class="msg-header">
+                         
+                            <div class="msg-header-img">
+                            </div>
+                            <div class="chat_active">
+                            <h4 id="profileName">John Lewis</h4>
+                                <h6></h6>
+                            </div>
+                        </div>
+                       
+                        <div class="chat-page" id="chatPage"  >
+                            <div class="msg-inbox" id="msgInbox" >
+                                <div class="chats" id="chats">
+                                    <div class="msg-page" id="msgPage"  style="overflow: scroll">
+                    
+                                    </div>
+                                    </div>
+                                    </div>
+                                    </div>
+        
+                                    <div class="msg-bottom">
+                                        <div class="input-group" id="chat_input-group">
+                                            <input id="inputmsg" type="text" class="form-control" placeholder="write message...">
+                                           <div class="input-group-append">
+                                            <button id="sender" class="btn" style="background-color: rgb(236, 6, 141); margin-left: 20px; color: white;" >Send</button>
+                                           </div>
+                                        </div>
+                                    </div>  
+                </div> -->
+    
+
+                    </div>
+
+            </div>
+
+        
+
+      
+
+     
+
+    </div>
+</div>
+
+
+<script src="assets/vendor/jquery/jquery.min.js"></script>
+
+<script>
+
+ 
+         //declare variables  initForm userName receivedMsg
+  var chats = document.getElementById("chats");
+  
+  var greyMsgbox = document.getElementById("send4");
+  var timebox = document.getElementById("send4");
+  var profileName = document.getElementById("profileName");
+  
+  var initForm = document.getElementById("initForm");
+  var userName = document.getElementById("userName");
+  
+  var greyMsgbox = document.getElementById("send8");
+  var timeboxReceive = document.getElementById("send8");
+  var socket = io.connect();  
+// var socket = io('http://localhost: 8000');
+ // var inputmsg = document.getElementById("inputmsg");
+  //var msgPage = document.getElementById("msgPage");
+  var text;
+  var enterHere = ['hello'];
+  var customers_list_div = document.getElementById("customers_list")
+   var each_chat_container = []
+   var each_chat_container_fromDB = []
+
+
+   socket.emit("connect_question", "send array of client connect")
+
+  socket.on("connect_respond", function(data){
+ // console.log("connect_respond happen, client array online: "+data)
+ // console.log("connect_respond happen, client array online.length: "+data.length)
+  var coun_them = 0
+      for (let index = 0; index < data.length; index++) {
+        if (document.getElementById(data[index])) {
+          // console.log("**********************")
+          // console.log(index+") true")
+          // console.log(data[index])
+          // console.log("**********************")
+        document.getElementById(data[index]).innerHTML = "Online" 
+        document.getElementById(data[index]).style.backgroundColor = "green"
+        document.getElementById(data[index]).style.width = "15%"
+        }
+        coun_them +=1
+      }
+     // console.log("total loop: "+coun_them)
+  })
+
+
+socket.on("token_socket_disconnect", function(data){
+  var trim_socketId_keepToken;
+  var array_token_socket = data.array_token_socket
+  var socket_id_toremove = data.id_disconnected
+  socket_id_toremove.toString()
+  trim_socketId_keepToken = array_token_socket[0]
+  //trim_socketId_keepToken.replace(socket_id_toremove,'')
+  // console.log("before: array_token_socket[0].length: "+array_token_socket[0].length)
+  // console.log("before: array_token_socket[0]: "+array_token_socket[0])
+  //   console.log("\n")
+ 
+    var token_socket_id = array_token_socket[0].slice( socket_id_toremove.length ,array_token_socket[0].length)
+    var real_token_socket_id;
+    var counter_token_socket=0
+
+    // console.log("\n")
+    // console.log("after array_token_socket[0].length: "+ token_socket_id.length)
+    //   console.log("after array_token_socket[0]: "+  token_socket_id)
+      //.slice(20,tt3.length)
+    // console.log("\n")
+    //   console.log("socket_id_toremove: "+socket_id_toremove)
+
+
+      for (let index = 0; index < array_token_socket.length; index++) {
+        counter_token_socket += 1
+    real_token_socket_id = array_token_socket[0].slice( socket_id_toremove.length ,array_token_socket[index].length)
+    // console.log("\n")
+    // console.log("real_token_socket_id: "+real_token_socket_id)
+        if (document.getElementById(real_token_socket_id)) {
+       //   console.log("true this client left")
+          document.getElementById(real_token_socket_id).innerHTML = "Offline"
+          document.getElementById(real_token_socket_id).style.backgroundColor = "red"
+          socket.emit("remove_this_id_from_online_array", real_token_socket_id)
+      }
+        
+      }
+      // console.log("\n")
+      // console.log("counter_token_socket: "+counter_token_socket)
+ 
+ 
+})
+
+
+ 
+
+   function buttonview_click(click_id) {
+       //buttonDelete_click
+   // console.log("before edit: "+click_id)
+    var buttonId_after_edit = click_id.replace("_view", '')
+
+    //console.log("after edit: "+buttonId_after_edit)
+    socket.emit('look_forThis_token', buttonId_after_edit)
+
+    }
+
+    // ****************************************
+
+        
+        // Get the modal
+        var modal = document.getElementById("myModal");
+
+        // Get the button that opens the modal
+        // var btn = document.getElementById("myBtn");
+
+        // Get the <span> element that closes the modal
+        var span = document.getElementsByClassName("close")[0];
+
+        // When the user clicks the button, open the modal 
+        // btn.onclick = function() {
+        // modal.style.display = "block";
+        // }
+
+        // btn.addEventListener("click", function(){
+        //   console.log("initia modal, delete button was click")
+        //   modal.style.display = "block";
+        // })
+
+        // When the user clicks on <span> (x), close the modal
+        span.onclick = function() {
+        modal.style.display = "none";
+        }
+
+        // When the user clicks anywhere outside of the modal, close it
+        window.onclick = function(event) {
+        if (event.target == modal) {
+            modal.style.display = "none";
+        }
+        }
+
+  // *****************************************
+
+      // document.getElementById("button_cancel").addEventListener("click", function(){
+      //   document.getElementById("myModal").style.display='none';
+      // })
+
+      function buttoninit_modal_Delete_click(params) {
+        document.getElementById("myModal").style.display='block';
+      }
+
+      function buttonCancel_click(data) {
+        document.getElementById("myModal").style.display='none';
+      }
+
+    function buttonDelete_click(click_id) {
+       //buttonDelete_click
+   // console.log("before edit: "+click_id)
+   document.getElementById("myModal").style.display='none';
+
+    var buttonId_after_edit = click_id.replace("_delete", '')
+    document.getElementById(buttonId_after_edit+"_well").remove()
+
+    //console.log("after edit: "+buttonId_after_edit)
+  //  console.log("id to delete: "+buttonId_after_edit)
+    socket.emit('Delete_this_client', buttonId_after_edit)
+
+    }
+
+    socket.on("customer_total_title", function(data){
+       // console.log("customer_total_title event")
+        document.getElementById("customer_total_title").innerHTML = data+" Customers"
+    })
+
+  socket.on("new_customer", function(data){
+
+  //  console.log("new customer alert")
+   
+    // function playit() {
+    //   document.getElementById("newCustomerInstore").play();
+    // }
+    // playit()
+   // console.log("event Data: "+data)
+
+    var well_cus = document.createElement('div')
+  var h4_cus = document.createElement('h4')
+  var span_notice_cus = document.createElement('span')
+  var div_cus = document.createElement('div')
+  var h6_cus = document.createElement('h6')
+  var span_cus = document.createElement('span')
+  var i_tag_cus = document.createElement('i')
+  var button_cus = document.createElement('button')
+
+  customers_list_div.appendChild(well_cus)
+  well_cus.appendChild(h4_cus)
+  h4_cus.appendChild(span_notice_cus)
+  well_cus.appendChild(div_cus)
+  div_cus.appendChild(h6_cus)
+  h6_cus.appendChild(span_cus)
+  span_cus.appendChild(i_tag_cus)
+  div_cus.appendChild(button_cus)
+
+  well_cus.setAttribute("class", "well")
+  h4_cus.setAttribute("class", "text-muted")
+  h6_cus.setAttribute("class", "text-muted")
+  h6_cus.setAttribute("id", data.socket_id )
+  i_tag_cus.setAttribute("class", "fa fa-circle")
+  button_cus.setAttribute("class","btn btn-primary")
+  button_cus.setAttribute("id", data.id+"_view")
+
+  // create chat ui
+
+  
+  var div_chat_panel = document.getElementById('div_chat_panel')
+
+  div_identify = document.createElement('div')
+div_chat_container = document.createElement('div')
+div_msg_header = document.createElement('div')
+div_msg_header_img = document.createElement('div')
+div_chat_active = document.createElement('div')
+h4_profileName = document.createElement('h4')
+h6_simple = document.createElement('h6')
+div_chat_page = document.createElement('div')
+div_msg_inbox = document.createElement('div')
+div_chats = document.createElement('div')
+div_msg_page = document.createElement('div')
+div_msg_bottom = document.createElement('div')
+div_input_group = document.createElement('div') 
+input_msg = document.createElement('input')
+div_input_group_append = document.createElement('div')
+button_sender = document.createElement('bottom')
+
+//set_this_attribute(div_identify, "id", data.name+"_"+"chat-container"+"_"+data.id )
+set_this_attribute(div_identify, "id" ,"chat-container_"+data.name+"_"+data.id )
+set_this_attribute(div_chat_container, "id", "admin_chat-container")
+
+set_this_attribute(div_msg_header , "class", "msg-header")
+set_this_attribute(div_msg_header_img , "class", "msg-header-img")
+set_this_attribute(div_chat_active , "class", "chat_active")
+set_this_attribute(h4_profileName , "id", "profileName")
+set_this_attribute(div_chat_page , "class", "chat-page")
+set_this_attribute(div_chat_page , "id", "chatPage")
+set_this_attribute(div_msg_inbox , "class", "msg-inbox")
+set_this_attribute(div_msg_inbox , "id", "msgInbox")
+set_this_attribute(div_chats , "class", "chats")
+set_this_attribute(div_chats , "id", "chats")
+set_this_attribute(div_msg_page , "class", "msg-page")
+set_this_attribute(div_msg_page , "id", "msgPage_"+data.name+"_"+data.id)
+div_msg_page.style.overflow = "scroll"
+set_this_attribute(div_msg_bottom , "class", "msg-bottom")
+set_this_attribute(div_input_group , "class", "input-group")
+set_this_attribute(div_input_group , "id", "chat_input-group")
+set_this_attribute(input_msg , "class", "form-control")
+//set_this_attribute(input_msg , "class", "inputmsg")
+set_this_attribute(input_msg , "id", "inputmsg_"+data.name+"_"+data.id)
+input_msg.style.width = "70%"
+set_this_attribute(input_msg , "placeholder", "write message...")
+set_this_attribute(input_msg , "type", "text")
+set_this_attribute(div_input_group_append , "class", "input-group-append")
+set_this_attribute(button_sender , "class", "btn")
+set_this_attribute(button_sender , "id", data.id)
+button_sender.style.backgroundColor = "rgb(236, 6, 141)"
+button_sender.style.marginLeft = "20px"
+button_sender.style.color = "white"
+button_sender.innerHTML = "Send"
+
+div_chat_panel.appendChild(div_identify)
+div_identify.appendChild(div_chat_container)
+div_identify.style.display = "none"
+div_chat_container.appendChild(div_msg_header)
+div_msg_header.appendChild(div_msg_header_img)
+div_msg_header.appendChild(div_chat_active)
+div_chat_active.appendChild(h4_profileName)
+div_chat_active.appendChild(h6_simple)
+
+
+div_chat_container.appendChild(div_chat_page)
+div_chat_page.appendChild(div_msg_inbox)
+div_msg_inbox.appendChild(div_chats)
+div_chats.appendChild(div_msg_page)
+
+div_chat_container.appendChild(div_msg_bottom)
+div_msg_bottom.appendChild(div_input_group)
+div_input_group.appendChild(input_msg)
+div_input_group.appendChild(div_input_group_append)
+div_input_group_append.appendChild(button_sender)
+
+//h4_profileName.innerHTML = data.name
+h4_profileName.innerHTML = data.name //"Salesman"
+
+
+each_chat_container.push("chat-container_"+data.name+"_"+data.id)
+
+  button_cus.addEventListener('click', ()=>{
+
+    var slice = button_cus.id
+    var slice_156 = slice.slice(0,156)
+    socket.emit("all_available_token", "send them")
+
+    socket.on("all_available_token_respond", function(data_token){
+
+        var true_condition = 0
+        var false_condition = 0
+        // console.log("data_token.length: "+data_token.length)
+        // console.log("data_token[length-1]: "+data_token[data_token.length-1])
+            for (let index = 0; index < data_token.length; index++) {
+                true_condition++
+                if (data_token[index] == "chat-container_"+data.name+"_"+slice_156) {
+
+                    document.getElementById(data_token[index]).style.display = "block"
+            }else{
+                false_condition++
+                if ( document.getElementById(data_token[index])) {
+                    document.getElementById(data_token[index]).style.display = "none"
+                }
+                   
+                        }
+            }
+
+            // console.log("773 true_condition: "+true_condition)
+            // console.log("774 false_condition: "+false_condition)
+    })
+   
+
+
+            document.getElementById(data.id).addEventListener("click", function() { 
+                        //take msg from input
+
+            var user_indi_input = document.getElementById("inputmsg_"+data.name+"_"+data.id)
+
+                        if(user_indi_input.value.trim().length > 0)
+                            {
+                        //console.log("752 data.id: "+data.id)
+                                        socket.emit("Admin_send_message", 
+                                        {msg: user_indi_input.value, 
+                                        channel: data.id, user: "Salesman",
+                                        sender: data.name});
+                            user_indi_input.value = "";
+
+                            } 
+                    
+                            
+                        });
+            
+       })
+
+       h6_cus.style.backgroundColor = "green"
+        h6_cus.style.color = "white"
+        h6_cus.style.width = "30%"
+        h6_cus.style.padding = "5px"
+        h6_cus.style.borderRadius = "10px"
+
+            h4_cus.innerHTML = data.name
+            h6_cus.innerHTML = "Online"
+            span_notice_cus.innerHTML = " (2) "
+            button_cus.innerHTML = "view"
+
+            })
+
+ 
+  
+  
+  //we create date object so that we can use the variety of method 
+  //in the Date class e.g second, minute ect..
+  var d = new Date();
+  var m = new Date();
+  var mt = new Date();
+  var dd = new Date();
+  var s = new Date();
+  
+  //we declare and populate the array with month name
+  //because the month method only return a number from one to tweve
+  // with this array we can identify which element/month the number that was return 
+  //refer to
+  var months = ["January", "February", "March", "April",
+  "May", "June", "July", "August", "September", "October",
+  "November", "December"];
+  
+  
+  //reveal chat box
+  //here we create a chat icon that reveal a form when it click
+//   document.getElementById("revealed").addEventListener("click", function() {
+//     console.log("you click revealed")
+//   document.getElementById("initForm").style.display = "block";
+//   document.getElementById("revealed").style.display = "none";
+//   });
+  
+//   document.getElementById("hide_button").addEventListener("click", function() {
+   
+//   document.getElementById("chat-container").style.display = "none";
+//   document.getElementById("revealed_chat").style.display = "block";
+  
+//   })
+  
+  
+//   document.getElementById("revealed_chat").addEventListener("click", function() {
+   
+//    document.getElementById("chat-container").style.display = "block";
+//    document.getElementById("revealed_chat").style.display = "none";
+   
+//    })
+    
+  
+  
+  //enter name
+  //when the form is reveal the user is require to enter his/her user name
+  //when the user name is submitted the live chat interface is reveal
+  document.getElementById("chat_bution").addEventListener("click", function() {
+  
+  socket.emit('new user', userName.value, function(data){
+  if(data)
+  {
+  document.getElementById("initForm").style.display = "none";
+  document.getElementById("chat-container").style.display = "block";
+  }
+  });
+  profileName.innerText = userName.value;
+//   console.log("(after form) profileName.innerText: "+profileName.innerText);
+//   console.log("profileName[0]: "+profileName.innerText.substring(1,0));
+  userName.value = '';
+  });
+  
+  
+  
+  
+  //get the users
+  //this function get the username that was enter in the form
+  socket.on('get users', function(data){
+  var html = '';
+  for(i = 0; i < data.length; i++){
+  html += data[i];
+  enterHere.push(data[i]);
+  }
+//   console.log(html)
+//   console.log(enterHere);
+//   console.log("enterHere[0]: "+enterHere[0]);
+  })
+  
+        //when send button is clicked
+  //this grab the chat input field and submit the data that the user enter
+  // the server using socket.io library
+  //document.getElementById("sender").addEventListener("click", function() { 
+  //take msg from input
+//   socket.emit("send message", inputmsg.value);
+//   inputmsg.value = "";
+//   });
+  
+  //msg transfered through socket
+  //using the server with socket.io the data (message and username) 
+  //is transfer to anyone that is connected
+  var msg_notif = 0
+  var client_name_row_trim = ""
+  socket.on('new message', function(data){
+  text = data.msg;
+  var clir = data.name;
+  document.getElementById("messageNotice").play();
+
+ 
+ if (msg_notif == 0) {
+  var client_name_row = document.getElementById(data.user_identity+"_client_name").innerHTML
+  //console.log("client_name_row: "+client_name_row)
+  client_name_row_trim = client_name_row.trim()
+ // console.log("client_name_row trim: "+client_name_row_trim)
+ }
+
+  msg_notif += 1
+ if (msg_notif  > 0 ) {
+  document.getElementById(data.user_identity+"_client_name").innerHTML = client_name_row_trim+" ("+msg_notif+")"
+ } else {
+
+ }
+  //console.log("client_name_row: "+client_name_row)
+
+//   console.log("data.this_customer: "+data.name+"_"+data.this_customer)
+//   console.log("842 data.user: "+data.name)
+  //console.log("profileName).innerText: "+document.getElementById("profileName").innerText)
+ //document.getElementById(data.user_identity) || document.getElementById(data.this_customer) 
+  if (document.getElementById("chat-container_"+data.name+"_"+data.this_customer)) {
+    
+    if(clir == "Salesman")
+  {
+  //declaring the receive variables (grey)
+  var rc = document.createElement("div");
+  var rci = document.createElement("div");
+  var rmr = document.createElement("div");
+  var rmis = document.createElement("div");
+  var pCreated = document.createElement("p");
+  var timeCreated = document.createElement("span");
+
+  
+ 
+  
+  pCreated.innerText = text;
+  timeCreated.innerText = clir+"    "+data.timeMoment;
+  //console.log("profileName.innerText: "+profileName.value);
+  
+  
+  //styling Receive-msg id= receivedMsg = rmr
+  rmr.style.display = 'inline-block';
+  rmr.style.padding = '0 0 0 10px';
+  rmr.style.verticalAlign = 'top';
+  rmr.style.width = '92%';
+  
+  
+  //styling Receive-msg inbox send  id = send8
+  rmis.style.width = '70%';
+  
+  //styling the paragraph Received grey color
+  pCreated.style.background = '#efefef none repeat scroll 0 0';
+  pCreated.style.borderRadius = '0px 20px 20px 20px';
+  pCreated.style.color = '#646464';
+  pCreated.style.fontSize = '14px';
+  pCreated.style.margin = '0';
+  pCreated.style.padding = '5px 10px 5px 12px';
+  pCreated.style.width = '100%';
+  
+  
+  // styling time/name section
+  timeCreated.style.color = '#777';
+  timeCreated.style.display = 'block';
+  timeCreated.style.fontSize = '12px';
+  timeCreated.style.margin = '8px 0 8px';
+
+  //console.log("887 msgPage_"+data.name+"_"+data.this_customer)
+  var msgPage = document.getElementById("msgPage_"+data.name+"_"+data.this_customer);
+  
+
+  msgPage.appendChild(rc);
+  rc.appendChild(rci);
+  rc.appendChild(rmr);
+  rmr.appendChild(rmis);
+  rmis.appendChild(pCreated);
+  rmis.appendChild(timeCreated);
+  msgPage.scrollTo(0,msgPage.scrollHeight);
+  }else
+  {
+
+    var inputmsg = document.getElementById("inputmsg");
+  var msgPage = document.getElementById("msgPage_"+data.name+"_"+data.this_customer);
+
+
+
+  //declaring the outgoing msg variables (green)
+  var oc = document.createElement("div");
+  var ocm = document.createElement("div");
+  var oci = document.createElement("div");
+  var pCreated = document.createElement("p");
+  var timeCreated = document.createElement("span");
+  
+
+  //styling outgoing-chats
+  oc.style.overflow = 'hidden'; 
+  oc.style.margin = '26px 20px';
+  
+  //styling the paragraph outgoing green color
+  pCreated.style.background = 'rgb(236, 6, 141) none repeat scroll 0 0';''
+  pCreated.style.color = '#fff';
+  pCreated.style.borderRadius = '20px 0px 20px 20px';
+  pCreated.style.fontSize = '14px';
+  pCreated.style.margin = '0';
+  pCreated.style.color = '#fff';
+  pCreated.style.padding = '5px 10px 5px 12px';
+  pCreated.style.width = '100%';
+  
+  
+  // styling time/name section
+  timeCreated.style.color = '#777';
+  timeCreated.style.display = 'block';
+  timeCreated.style.fontSize = '12px';
+  timeCreated.style.margin = '8px 0 0';
+  
+  //styling outgoing-chats-msg
+  ocm.style.float = 'right'; 
+  ocm.style.width = '70%';
+  ocm.style.marginLeft = '0';
+  
+  //styling outgoing-chats-img
+  oci.style.display = 'inline-block';
+  oci.style.width = '20px';
+  oci.style.float = 'right';
+  
+  pCreated.innerText = text;
+  timeCreated.innerText = clir+" "+data.timeMoment;
+  //console.log("profileName.innerText: "+profileName.value);
+  
+  
+  msgPage.appendChild(oc);
+  oc.appendChild(ocm);
+  ocm.appendChild(pCreated);
+  ocm.appendChild(timeCreated);
+  oc.appendChild(oci);
+  msgPage.scrollTo(0,msgPage.scrollHeight);
+  }
+
+  } else {
+    //   console.log('not this div chat')
+    //   console.log('1026 looking for: '+"chat-container_"+data.name+"_"+data.this_customer)
+  }
+  
+  
+  
+  
+  
+  });
+
+
+
+  // msg from admin
+  socket.on('new messageAdmin', function(data){
+  text = data.msg;
+  var clir = data.name;
+  //var activeUser = data.user;
+ // console.log('new messageAdmin was call')
+
+//   console.log("data.this_customer: "+data.receiver+"_"+data.this_customer)
+//   console.log("842 data.user: "+data.receiver)
+  //console.log("profileName).innerText: "+document.getElementById("profileName").innerText)
+ //document.getElementById(data.user_identity) || document.getElementById(data.this_customer) 
+  if (document.getElementById("chat-container_"+data.receiver+"_"+data.this_customer)) {
+    
+    if(clir == "Salesman")
+  {
+  //declaring the receive variables (grey)
+  var rc = document.createElement("div");
+  var rci = document.createElement("div");
+  var rmr = document.createElement("div");
+  var rmis = document.createElement("div");
+  var pCreated = document.createElement("p");
+  var timeCreated = document.createElement("span"); 
+  
+  
+  
+  pCreated.innerText = text;
+  timeCreated.innerText = clir+"    "+data.timeMoment;
+  //console.log("profileName.innerText: "+profileName.value);
+  
+  
+  //styling Receive-msg id= receivedMsg = rmr
+  rmr.style.display = 'inline-block';
+  rmr.style.padding = '0 0 0 10px';
+  rmr.style.verticalAlign = 'top';
+  rmr.style.width = '92%';
+  
+  
+  //styling Receive-msg inbox send  id = send8
+  rmis.style.width = '70%';
+  
+  //styling the paragraph Received grey color
+  pCreated.style.background = '#efefef none repeat scroll 0 0';
+  pCreated.style.borderRadius = '0px 20px 20px 20px';
+  pCreated.style.color = '#646464';
+  pCreated.style.fontSize = '14px';
+  pCreated.style.margin = '0';
+  pCreated.style.padding = '5px 10px 5px 12px';
+  pCreated.style.width = '100%';
+  
+  
+  // styling time/name section
+  timeCreated.style.color = '#777';
+  timeCreated.style.display = 'block';
+  timeCreated.style.fontSize = '12px';
+  timeCreated.style.margin = '8px 0 8px';
+
+ // console.log("887 msgPage_"+data.receiver+"_"+data.this_customer)
+  var msgPage = document.getElementById("msgPage_"+data.receiver+"_"+data.this_customer);
+  
+  msgPage.appendChild(rc);
+  rc.appendChild(rci);
+  rc.appendChild(rmr);
+  rmr.appendChild(rmis);
+  rmis.appendChild(pCreated);
+  rmis.appendChild(timeCreated);
+  msgPage.scrollTo(0,msgPage.scrollHeight);
+  }else
+  {
+
+    var inputmsg = document.getElementById("inputmsg");
+  var msgPage = document.getElementById("msgPage_"+data.name+"_"+data.this_customer);
+
+
+
+  //declaring the outgoing msg variables (green)
+  var oc = document.createElement("div");
+  var ocm = document.createElement("div");
+  var oci = document.createElement("div");
+  var pCreated = document.createElement("p");
+  var timeCreated = document.createElement("span");
+
+  //styling outgoing-chats
+  oc.style.overflow = 'hidden'; 
+  oc.style.margin = '26px 20px';
+  
+  //styling the paragraph outgoing green color
+  pCreated.style.background = 'rgb(236, 6, 141) none repeat scroll 0 0';''
+  pCreated.style.color = '#fff';
+  pCreated.style.borderRadius = '20px 0px 20px 20px';
+  pCreated.style.fontSize = '14px';
+  pCreated.style.margin = '0';
+  pCreated.style.color = '#fff';
+  pCreated.style.padding = '5px 10px 5px 12px';
+  pCreated.style.width = '100%';
+  
+  
+  // styling time/name section
+  timeCreated.style.color = '#777';
+  timeCreated.style.display = 'block';
+  timeCreated.style.fontSize = '12px';
+  timeCreated.style.margin = '8px 0 0';
+  
+  //styling outgoing-chats-msg
+  ocm.style.float = 'right'; 
+  ocm.style.width = '70%';
+  ocm.style.marginLeft = '0';
+  
+  //styling outgoing-chats-img
+  oci.style.display = 'inline-block';
+  oci.style.width = '20px';
+  oci.style.float = 'right';
+  
+  pCreated.innerText = text;
+  timeCreated.innerText = clir+" "+data.timeMoment;
+  //console.log("profileName.innerText: "+profileName.value);
+  
+  
+  msgPage.appendChild(oc);
+  oc.appendChild(ocm);
+  ocm.appendChild(pCreated);
+  ocm.appendChild(timeCreated);
+  oc.appendChild(oci);
+  msgPage.scrollTo(0,msgPage.scrollHeight);
+  }
+
+  } else {
+      console.log('not this div chat')
+  }
+  
+  
+  
+  
+  
+  });
+
+ 
+  socket.on("here_thisUser_docs", async function(data){
+//console.log("1403 data back: "+data)
+    var current_client_chat_container_id =""
+     // Set name of this document
+     if (data[0].receiver  || data[0].sender) {
+        
+        if (data[0].receiver !== "Salesman" ) {
+            var current_client_chat_container_id =  "chat-container_"+data[0].receiver+"_"+data[0].identifyuser
+            each_chat_container_fromDB.push("chat-container_"+data[0].receiver+"_"+data[0].identifyuser)
+        } else {
+            var current_client_chat_container_id =  "chat-container_"+data[0].sender+"_"+data[0].identifyuser
+            each_chat_container_fromDB.push("chat-container_"+data[0].sender+"_"+data[0].identifyuser)
+    
+        }
+
+     }
+       
+
+        if (!document.getElementById(current_client_chat_container_id)) {
+      
+
+        // // create the chat container from DB
+        //     create_chat_container( data[0].receiver,
+        //                         data[0].sender,
+        //                         data[0].identifyuser)
+        
+        // // run forEach loop for every chat msg
+        //     for (let index = 0; index < data.length; index++) {
+
+        //     chatBubble(       data[index].receiver,
+        //                     data[index].sender,
+        //                     data[index].chat, 
+        //                     data[index].updatedAt,
+        //                     data[index].identifyuser)
+                
+        //     }
+
+           // console.log("current id to show: "+current_client_chat_container_id)
+          //  console.log("number in array before remove(): "+each_chat_container_fromDB.length)
+           
+           // remove chat-container that is not current
+            // if (each_chat_container_fromDB.length >= 1) {
+            //         for (let index = 0; index < each_chat_container_fromDB.length; index++) {
+            //                 if (each_chat_container_fromDB[index] !== current_client_chat_container_id) {
+            //            // console.log("remove: "+each_chat_container_fromDB[index])
+            //         document.getElementById(each_chat_container_fromDB[index]).remove()
+            //     // each_chat_container_fromDB.pop() .shift()
+            //     each_chat_container_fromDB.shift()
+            //         }
+            //         // console.log("*********************")
+            //         // console.log("still in array: "+each_chat_container_fromDB[index])
+            //     }
+            // }
+           // console.log("number in array after remove(): "+each_chat_container_fromDB.length)
+
+           socket.on("chat_container_id_array", async function(data_id_array){
+              //  console.log("count array: "+data_id_array.length )
+              //   console.log("keep this one: "+current_client_chat_container_id)
+               for (let index = 0; index < data_id_array.length; index++) {
+
+                  // if ( current_client_chat_container_id !== data_id_array[index] ) {
+                      // console.log("no match with current id")
+                    if (document.getElementById(data_id_array[index])) {
+                       // console.log("yes present but no match with current")
+                      //  console.log("remove this one: "+data_id_array[index])
+                        document.getElementById(data_id_array[index]).remove()
+                    }
+                  // } 
+                   
+               }
+
+                // create the chat container from DB
+            create_chat_container( data[0].receiver,
+                                data[0].sender,
+                                data[0].identifyuser)
+        
+        // run forEach loop for every chat msg
+            for (let index = 0; index < data.length; index++) {
+
+            chatBubble(       data[index].receiver,
+                            data[index].sender,
+                            data[index].chat, 
+                            data[index].timeStore,
+                            data[index].identifyuser)
+                
+            }
+
+
+           })
+
+  }
+
+  })
+
+
+   socket.on("this_socket_disconnect", function(data){
+
+    if (document.getElementById(data)) {
+      var h6_cus = document.getElementById(data)
+    h6_cus.innerHTML = "Offline"
+    h6_cus.style.backgroundColor = "red"
+    h6_cus.style.color = "white"
+    h6_cus.style.width = "30%"
+    h6_cus.style.padding = "5px"
+    h6_cus.style.borderRadius = "10px"
+   // console.log("h6 container: "+h6_cus.innerHTML)
+    }
+   })
+
+    function set_this_attribute(element, attribute, attribute_name) {
+
+     element.setAttribute(attribute, attribute_name )
+
+     }
+
+
+     function create_chat_container(receiver, sender , identifier) {
+
+  //  console.log('function create_chat_container was call')
+   // if receiver value is equal to Salesman , assign 
+   // name to sender value
+        if (receiver !== 'Salesman') {
+            var name = receiver
+          // console.log("1199 if true create_chat_container name: "+name)
+
+            var div_chat_panel = document.getElementById('div_chat_panel')
+
+            div_identify = document.createElement('div')
+            div_chat_container = document.createElement('div')
+            div_msg_header = document.createElement('div')
+            div_msg_header_img = document.createElement('div')
+            div_chat_active = document.createElement('div')
+            h4_profileName = document.createElement('h4')
+            h6_simple = document.createElement('h6')
+            div_chat_page = document.createElement('div')
+            div_msg_inbox = document.createElement('div')
+            div_chats = document.createElement('div')
+            div_msg_page = document.createElement('div')
+            div_msg_bottom = document.createElement('div')
+            div_input_group = document.createElement('div') 
+            input_msg = document.createElement('input')
+            div_input_group_append = document.createElement('div')
+            button_sender = document.createElement('bottom')
+
+            //set_this_attribute(div_identify, "id", data.name+"_"+"chat-container"+"_"+data.id )
+            set_this_attribute(div_identify, "id" ,"chat-container_"+name+"_"+identifier )
+            set_this_attribute(div_chat_container, "id", "admin_chat-container")
+
+            set_this_attribute(div_msg_header , "class", "msg-header")
+            set_this_attribute(div_msg_header_img , "class", "msg-header-img")
+            set_this_attribute(div_chat_active , "class", "chat_active")
+            set_this_attribute(h4_profileName , "id", "profileName")
+            set_this_attribute(div_chat_page , "class", "chat-page")
+            set_this_attribute(div_chat_page , "id", "chatPage")
+            set_this_attribute(div_msg_inbox , "class", "msg-inbox")
+            set_this_attribute(div_msg_inbox , "id", "msgInbox")
+            set_this_attribute(div_chats , "class", "chats")
+            set_this_attribute(div_chats , "id", "chats")
+            set_this_attribute(div_msg_page , "class", "msg-page")
+            set_this_attribute(div_msg_page , "id", "msgPage_"+name+"_"+identifier)
+            div_msg_page.style.overflow = "scroll"
+            set_this_attribute(div_msg_bottom , "class", "msg-bottom")
+            set_this_attribute(div_input_group , "class", "input-group")
+            set_this_attribute(div_input_group , "id", "chat_input-group")
+            set_this_attribute(input_msg , "class", "form-control")
+            //set_this_attribute(input_msg , "class", "inputmsg")
+            set_this_attribute(input_msg , "id", "inputmsg_"+name+"_"+identifier)
+            input_msg.style.width = "70%"
+            set_this_attribute(input_msg , "placeholder", "write message...")
+            set_this_attribute(input_msg , "type", "text")
+            set_this_attribute(div_input_group_append , "class", "input-group-append")
+            set_this_attribute(button_sender , "class", "btn")
+            set_this_attribute(button_sender , "id", identifier)
+            button_sender.style.backgroundColor = "rgb(236, 6, 141)"
+            button_sender.style.marginLeft = "20px"
+            button_sender.style.color = "white"
+            button_sender.innerHTML = "Send"
+
+            div_chat_panel.appendChild(div_identify)
+            div_identify.appendChild(div_chat_container)
+            div_identify.style.display = "block"
+            div_chat_container.appendChild(div_msg_header)
+            div_msg_header.appendChild(div_msg_header_img)
+            div_msg_header.appendChild(div_chat_active)
+            div_chat_active.appendChild(h4_profileName)
+            div_chat_active.appendChild(h6_simple)
+
+
+            div_chat_container.appendChild(div_chat_page)
+            div_chat_page.appendChild(div_msg_inbox)
+            div_msg_inbox.appendChild(div_chats)
+            div_chats.appendChild(div_msg_page)
+
+            div_chat_container.appendChild(div_msg_bottom)
+            div_msg_bottom.appendChild(div_input_group)
+            div_input_group.appendChild(input_msg)
+            div_input_group.appendChild(div_input_group_append)
+            div_input_group_append.appendChild(button_sender)
+
+            //h4_profileName.innerHTML = data.name
+            h4_profileName.innerHTML = name //"Salesman"
+
+            button_sender.addEventListener('click', () => {
+                // console.log("******************") // name
+                // console.log("identifier: "+identifier)
+                // console.log("name: "+name)
+
+
+                var user_indi_input = document.getElementById("inputmsg_"+name+"_"+identifier)
+
+                    if(user_indi_input.value.trim().length > 0)
+                    {
+                    //console.log("752 data.id: "+data.id)
+                                socket.emit("Admin_send_message", 
+                                {msg: user_indi_input.value, 
+                                channel: identifier, 
+                                user: "Salesman",
+                                sender: name});
+                    user_indi_input.value = "";
+                    } 
+
+            })
+         
+
+        }else{
+            var name = sender
+            
+           // console.log("else create_chat_container name: "+name)
+
+            var div_chat_panel = document.getElementById('div_chat_panel')
+
+            div_identify = document.createElement('div')
+            div_chat_container = document.createElement('div')
+            div_msg_header = document.createElement('div')
+            div_msg_header_img = document.createElement('div')
+            div_chat_active = document.createElement('div')
+            h4_profileName = document.createElement('h4')
+            h6_simple = document.createElement('h6')
+            div_chat_page = document.createElement('div')
+            div_msg_inbox = document.createElement('div')
+            div_chats = document.createElement('div')
+            div_msg_page = document.createElement('div')
+            div_msg_bottom = document.createElement('div')
+            div_input_group = document.createElement('div') 
+            input_msg = document.createElement('input')
+            div_input_group_append = document.createElement('div')
+            button_sender = document.createElement('bottom')
+
+            //set_this_attribute(div_identify, "id", data.name+"_"+"chat-container"+"_"+data.id )
+            set_this_attribute(div_identify, "id" ,"chat-container_"+name+"_"+identifier )
+            set_this_attribute(div_chat_container, "id", "admin_chat-container")
+
+            set_this_attribute(div_msg_header , "class", "msg-header")
+            set_this_attribute(div_msg_header_img , "class", "msg-header-img")
+            set_this_attribute(div_chat_active , "class", "chat_active")
+            set_this_attribute(h4_profileName , "id", "profileName")
+            set_this_attribute(div_chat_page , "class", "chat-page")
+            set_this_attribute(div_chat_page , "id", "chatPage")
+            set_this_attribute(div_msg_inbox , "class", "msg-inbox")
+            set_this_attribute(div_msg_inbox , "id", "msgInbox")
+            set_this_attribute(div_chats , "class", "chats")
+            set_this_attribute(div_chats , "id", "chats")
+            set_this_attribute(div_msg_page , "class", "msg-page")
+            set_this_attribute(div_msg_page , "id", "msgPage_"+name+"_"+identifier)
+            div_msg_page.style.overflow = "scroll"
+            set_this_attribute(div_msg_bottom , "class", "msg-bottom")
+            set_this_attribute(div_input_group , "class", "input-group")
+            set_this_attribute(div_input_group , "id", "chat_input-group")
+            set_this_attribute(input_msg , "class", "form-control")
+            //set_this_attribute(input_msg , "class", "inputmsg")
+            set_this_attribute(input_msg , "id", "inputmsg_"+name+"_"+identifier)
+            input_msg.style.width = "70%"
+            set_this_attribute(input_msg , "placeholder", "write message...")
+            set_this_attribute(input_msg , "type", "text")
+            set_this_attribute(div_input_group_append , "class", "input-group-append")
+            set_this_attribute(button_sender , "class", "btn")
+            set_this_attribute(button_sender , "id", identifier)
+            button_sender.style.backgroundColor = "rgb(236, 6, 141)"
+            button_sender.style.marginLeft = "20px"
+            button_sender.style.color = "white"
+            button_sender.innerHTML = "Send"
+
+            div_chat_panel.appendChild(div_identify)
+            div_identify.appendChild(div_chat_container)
+            div_identify.style.display = "block"
+            div_chat_container.appendChild(div_msg_header)
+            div_msg_header.appendChild(div_msg_header_img)
+            div_msg_header.appendChild(div_chat_active)
+            div_chat_active.appendChild(h4_profileName)
+            div_chat_active.appendChild(h6_simple)
+
+
+            div_chat_container.appendChild(div_chat_page)
+            div_chat_page.appendChild(div_msg_inbox)
+            div_msg_inbox.appendChild(div_chats)
+            div_chats.appendChild(div_msg_page)
+
+            div_chat_container.appendChild(div_msg_bottom)
+            div_msg_bottom.appendChild(div_input_group)
+            div_input_group.appendChild(input_msg)
+            div_input_group.appendChild(div_input_group_append)
+            div_input_group_append.appendChild(button_sender)
+
+            //h4_profileName.innerHTML = data.name
+            h4_profileName.innerHTML = name //"Salesman"
+
+            button_sender.addEventListener('click', () => {
+                // console.log("******************") // name
+                // console.log("identifier: "+identifier)
+                // console.log("name: "+name)
+
+                 var user_indi_input = document.getElementById("inputmsg_"+name+"_"+identifier)
+
+            if(user_indi_input.value.trim().length > 0)
+              {
+           //console.log("752 data.id: "+data.id)
+                        socket.emit("Admin_send_message", 
+                        {msg: user_indi_input.value, 
+                        channel: identifier, 
+                        user: "Salesman",
+                        sender: name});
+            user_indi_input.value = "";
+
+            } 
+            })
+         
+        }
+        
+ 
+     }
+
+
+     function chatBubble(receiver, sender , msg, time, identifier) {
+        
+   // console.log('function chatBubble was call')
+
+        if (receiver !== 'Salesman') {
+            var name = receiver
+
+          //  console.log("1199 if true chatBubble name: "+name)
+
+
+            text = msg;
+       var clir = sender;
+  //var activeUser = data.user;
+
+ // console.log("function chatBubble was called")
+//   console.log("data.this_customer: "+name+"_"+identifier)
+//   console.log("842 data.user: "+name)
+  //console.log("profileName).innerText: "+document.getElementById("profileName").innerText)
+ //document.getElementById(data.user_identity) || document.getElementById(data.this_customer) 
+  if (document.getElementById("chat-container_"+name+"_"+identifier)) {
+    
+    if(clir == "Salesman")
+  {
+  //declaring the receive variables (grey)
+  var rc = document.createElement("div");
+  var rci = document.createElement("div");
+  var rmr = document.createElement("div");
+  var rmis = document.createElement("div");
+  var pCreated = document.createElement("p");
+  var timeCreated = document.createElement("span");
+
+  
+  pCreated.innerText = text;
+  timeCreated.innerText = clir+"    "+time;
+  //console.log("profileName.innerText: "+profileName.value);
+  
+  
+  //styling Receive-msg id= receivedMsg = rmr
+  rmr.style.display = 'inline-block';
+  rmr.style.padding = '0 0 0 10px';
+  rmr.style.verticalAlign = 'top';
+  rmr.style.width = '92%';
+  
+  
+  //styling Receive-msg inbox send  id = send8
+  rmis.style.width = '70%';
+  
+  //styling the paragraph Received grey color
+  pCreated.style.background = '#efefef none repeat scroll 0 0';
+  pCreated.style.borderRadius = '0px 20px 20px 20px';
+  pCreated.style.color = '#646464';
+  pCreated.style.fontSize = '14px';
+  pCreated.style.margin = '0';
+  pCreated.style.padding = '5px 10px 5px 12px';
+  pCreated.style.width = '100%';
+  
+  
+  // styling time/name section
+  timeCreated.style.color = '#777';
+  timeCreated.style.display = 'block';
+  timeCreated.style.fontSize = '12px';
+  timeCreated.style.margin = '8px 0 8px';
+
+  //console.log("1315 msgPage_"+name+"_"+identifier)
+  var msgPage = document.getElementById("msgPage_"+name+"_"+identifier);
+  
+  msgPage.appendChild(rc);
+  rc.appendChild(rci);
+  rc.appendChild(rmr);
+  rmr.appendChild(rmis);
+  rmis.appendChild(pCreated);
+  rmis.appendChild(timeCreated);
+
+  msgPage.scrollTo(0,msgPage.scrollHeight);
+  }else
+  {
+
+    var inputmsg = document.getElementById("inputmsg");
+  var msgPage = document.getElementById("msgPage_"+name+"_"+identifier);
+
+
+
+  //declaring the outgoing msg variables (green)
+  var oc = document.createElement("div");
+  var ocm = document.createElement("div");
+  var oci = document.createElement("div");
+  var pCreated = document.createElement("p");
+  var timeCreated = document.createElement("span");
+
+  //styling outgoing-chats
+  oc.style.overflow = 'hidden'; 
+  oc.style.margin = '26px 20px';
+  
+  //styling the paragraph outgoing green color
+  pCreated.style.background = 'rgb(236, 6, 141) none repeat scroll 0 0';''
+  pCreated.style.color = '#fff';
+  pCreated.style.borderRadius = '20px 0px 20px 20px';
+  pCreated.style.fontSize = '14px';
+  pCreated.style.margin = '0';
+  pCreated.style.color = '#fff';
+  pCreated.style.padding = '5px 10px 5px 12px';
+  pCreated.style.width = '100%';
+  
+  
+  // styling time/name section
+  timeCreated.style.color = '#777';
+  timeCreated.style.display = 'block';
+  timeCreated.style.fontSize = '12px';
+  timeCreated.style.margin = '8px 0 0';
+  
+  //styling outgoing-chats-msg
+  ocm.style.float = 'right'; 
+  ocm.style.width = '70%';
+  ocm.style.marginLeft = '0';
+  
+  //styling outgoing-chats-img
+  oci.style.display = 'inline-block';
+  oci.style.width = '20px';
+  oci.style.float = 'right';
+  
+  pCreated.innerText = text;
+  timeCreated.innerText = clir+" "+time;
+  //console.log("profileName.innerText: "+profileName.value);
+  
+  
+  msgPage.appendChild(oc);
+  oc.appendChild(ocm);
+  ocm.appendChild(pCreated);
+  ocm.appendChild(timeCreated);
+  oc.appendChild(oci);
+  msgPage.scrollTo(0,msgPage.scrollHeight);
+  }
+
+  } else {
+      console.log('not this div chat')
+  }
+
+        } else {  
+            var name = sender
+
+           // console.log("else chatBubble name: "+name)
+
+
+            text = msg;
+       var clir = name;
+  //var activeUser = data.user;
+
+//   console.log("from chatBubble function")
+//   console.log("data.this_customer: "+name+"_"+identifier)
+//   console.log("842 data.user: "+name)
+  //console.log("profileName).innerText: "+document.getElementById("profileName").innerText)
+ //document.getElementById(data.user_identity) || document.getElementById(data.this_customer) 
+  if (document.getElementById("chat-container_"+name+"_"+identifier)) {
+    
+    if(clir == "Salesman")
+  {
+  //declaring the receive variables (grey)
+  var rc = document.createElement("div");
+  var rci = document.createElement("div");
+  var rmr = document.createElement("div");
+  var rmis = document.createElement("div");
+  var pCreated = document.createElement("p");
+  var timeCreated = document.createElement("span");
+
+  
+  pCreated.innerText = text;
+  timeCreated.innerText = clir+"    "+time;
+  //console.log("profileName.innerText: "+profileName.value);
+  
+  
+  //styling Receive-msg id= receivedMsg = rmr
+  rmr.style.display = 'inline-block';
+  rmr.style.padding = '0 0 0 10px';
+  rmr.style.verticalAlign = 'top';
+  rmr.style.width = '92%';
+  
+  
+  //styling Receive-msg inbox send  id = send8
+  rmis.style.width = '70%';
+  
+  //styling the paragraph Received grey color
+  pCreated.style.background = '#efefef none repeat scroll 0 0';
+  pCreated.style.borderRadius = '0px 20px 20px 20px';
+  pCreated.style.color = '#646464';
+  pCreated.style.fontSize = '14px';
+  pCreated.style.margin = '0';
+  pCreated.style.padding = '5px 10px 5px 12px';
+  pCreated.style.width = '100%';
+  
+  
+  // styling time/name section
+  timeCreated.style.color = '#777';
+  timeCreated.style.display = 'block';
+  timeCreated.style.fontSize = '12px';
+  timeCreated.style.margin = '8px 0 8px';
+
+  //console.log("1315 msgPage_"+name+"_"+identifier)
+  var msgPage = document.getElementById("msgPage_"+name+"_"+identifier);
+  
+  msgPage.appendChild(rc);
+  rc.appendChild(rci);
+  rc.appendChild(rmr);
+  rmr.appendChild(rmis);
+  rmis.appendChild(pCreated);
+  rmis.appendChild(timeCreated);
+  msgPage.scrollTo(0,msgPage.scrollHeight);
+  }else
+  {
+
+    var inputmsg = document.getElementById("inputmsg");
+  var msgPage = document.getElementById("msgPage_"+name+"_"+identifier);
+
+
+
+  //declaring the outgoing msg variables (green)
+  var oc = document.createElement("div");
+  var ocm = document.createElement("div");
+  var oci = document.createElement("div");
+  var pCreated = document.createElement("p");
+  var timeCreated = document.createElement("span");
+
+  //styling outgoing-chats
+  oc.style.overflow = 'hidden'; 
+  oc.style.margin = '26px 20px';
+  
+  //styling the paragraph outgoing green color
+  pCreated.style.background = 'rgb(236, 6, 141) none repeat scroll 0 0';''
+  pCreated.style.color = '#fff';
+  pCreated.style.borderRadius = '20px 0px 20px 20px';
+  pCreated.style.fontSize = '14px';
+  pCreated.style.margin = '0';
+  pCreated.style.color = '#fff';
+  pCreated.style.padding = '5px 10px 5px 12px';
+  pCreated.style.width = '100%';
+  
+  
+  // styling time/name section
+  timeCreated.style.color = '#777';
+  timeCreated.style.display = 'block';
+  timeCreated.style.fontSize = '12px';
+  timeCreated.style.margin = '8px 0 0';
+  
+  //styling outgoing-chats-msg
+  ocm.style.float = 'right'; 
+  ocm.style.width = '70%';
+  ocm.style.marginLeft = '0';
+  
+  //styling outgoing-chats-img
+  oci.style.display = 'inline-block';
+  oci.style.width = '20px';
+  oci.style.float = 'right';
+  
+  pCreated.innerText = text;
+  timeCreated.innerText = clir+" "+time;
+  //console.log("profileName.innerText: "+profileName.value);
+  
+  
+  msgPage.appendChild(oc);
+  oc.appendChild(ocm);
+  ocm.appendChild(pCreated);
+  ocm.appendChild(timeCreated);
+  oc.appendChild(oci);
+  msgPage.scrollTo(0,msgPage.scrollHeight);
+  }
+
+  } else {  // no match with chat-container id
+      console.log('not this div chat')
+  } 
+  
+            
+        }
+
+     
+
+     }
+
+       
+  </script>

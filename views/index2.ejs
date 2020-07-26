@@ -1,0 +1,1294 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+
+  <title>Flowerboss Index2</title>
+  <meta content="" name="descriptison">
+  <meta content="" name="keywords">
+
+  <!-- Favicons -->
+  <!-- <link href="assets/img/favicon.png" rel="icon"> -->
+  <link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon">
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Roboto:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
+
+  <!-- Vendor CSS Files -->
+  <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <link href="assets/vendor/icofont/icofont.min.css" rel="stylesheet">
+  <link href="assets/vendor/boxicons/css/boxicons.min.css" rel="stylesheet">
+  <link href="assets/vendor/animate.css/animate.min.css" rel="stylesheet">
+  <link href="assets/vendor/venobox/venobox.css" rel="stylesheet">
+  <link href="assets/vendor/owl.carousel/assets/owl.carousel.min.css" rel="stylesheet">
+  <link href="assets/vendor/aos/aos.css" rel="stylesheet">
+  <link href="assets/vendor/remixicon/remixicon.css" rel="stylesheet">
+  <!-- <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet"> -->
+
+  
+<script src="/socket.io/socket.io.js"></script>
+
+  <!-- Template Main CSS File -->
+  <link href="assets/css/style.css" rel="stylesheet">
+
+  <!-- =======================================================
+  * Template Name: Company - v2.0.1
+  * Template URL: https://bootstrapmade.com/company-free-html-bootstrap-template/
+  * Author: BootstrapMade.com
+  * License: https://bootstrapmade.com/license/
+  ======================================================== -->
+</head>
+
+<body>
+
+  <!-- ======= Header ======= -->
+  <header id="header" class="fixed-top">
+    <div class="container d-flex align-items-center">
+
+      <h1 class="logo mr-auto"><a href="index.html"><span>Flower</span>Boss</a></h1>
+      <!-- Uncomment below if you prefer to use an image logo -->
+      <!-- <a href="index.html" class="logo mr-auto"><img src="assets/img/logo.png" alt="" class="img-fluid"></a>-->
+
+      <nav  class="nav-menu d-none d-lg-block">
+        <ul>
+          <li class="active"><a href="index.html">Home</a></li>
+
+          <li class="drop-down"><a href="">About</a>
+            <ul>
+              <li><a href="about.html">About Us</a></li>
+              <li><a href="team.html">Flowers</a></li>
+              <li><a href="testimonials.html">Gifts</a>
+              </li> <li><a href="about.html">Nuts</a></li>
+              <!-- <li class="drop-down"><a href="#">Deep Drop Down</a>
+                <ul>
+                  <li><a href="#">Deep Drop Down 1</a></li>
+                  <li><a href="#">Deep Drop Down 2</a></li>
+                  <li><a href="#">Deep Drop Down 3</a></li>
+                  <li><a href="#">Deep Drop Down 4</a></li>
+                  <li><a href="#">Deep Drop Down 5</a></li>
+                </ul>
+              </li> -->
+            </ul>
+          </li>
+
+          <li><a href="services.html">Services</a></li>
+          <li><a href="portfolio.html">Gallery</a></li>
+          <li><a href="pricing.html">Pricing</a></li>
+          <!-- <li><a href="blog.html">Blog</a></li> -->
+          <li><a href="contact.html">Contact</a></li>
+
+        </ul>
+      </nav><!-- .nav-menu -->
+
+      <div class="header-social-links">
+        <a href="#" class="twitter"><i class="icofont-twitter"></i></a>
+        <a href="#" class="facebook"><i class="icofont-facebook"></i></a>
+        <a href="#" class="instagram"><i class="icofont-instagram"></i></a>
+        <a href="#" class="linkedin"><i class="icofont-linkedin"></i></i></a>
+      </div>
+
+    </div>
+  </header><!-- End Header -->
+
+  <!-- ======= Hero Section ======= -->
+  <section id="hero">
+    <div id="heroCarousel" class="carousel slide carousel-fade" data-ride="carousel">
+
+      <div class="carousel-inner" role="listbox">
+
+        <!-- Slide 1 -->
+        <div class="carousel-item active" style="background-image: url(assets/img/slide/assorted-flower-arrangements-947914.jpg);">
+          <div class="carousel-container">
+            <div class="carousel-content animated fadeInUp">
+              <h2>Welcome to <span>FlowerBoss</span></h2>
+              <p>Located in Bryan Park Shopping Center Johannesburg South Africa Ut velit est quam dolor ad a aliquid qui aliquid. Sequi ea ut et est quaerat sequi nihil ut aliquam. Occaecati alias dolorem mollitia ut. Similique ea voluptatem. Esse doloremque accusamus repellendus deleniti vel. Minus et tempore modi architecto.</p>
+              <div class="text-center"><a href="" class="btn-get-started">Read More</a></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Slide 2 -->
+        <div class="carousel-item" style="background-image: url(assets/img/slide/woman-holding-flowers-in-vase-2351851.jpg);">
+          <div class="carousel-container">
+            <div class="carousel-content animated fadeInUp">
+              <h2>Sequi ea ut et est quaerat</h2>
+              <p>Ut velit est quam dolor ad a aliquid qui aliquid. Sequi ea ut et est quaerat sequi nihil ut aliquam. Occaecati alias dolorem mollitia ut. Similique ea voluptatem. Esse doloremque accusamus repellendus deleniti vel. Minus et tempore modi architecto.</p>
+              <div class="text-center"><a href="" class="btn-get-started">Read More</a></div>
+            </div>
+          </div>
+        </div>
+
+       
+
+        <!-- Slide 3 -->
+        <div class="carousel-item">
+          <video autoplay muted loop id="myVideo">
+            <source src="assets/img/slide/Time Lapse Video Of Blooming Snowdrops.mp4" type="video/mp4">
+            Your browser does not support HTML5 video.
+          </video>
+          <div class="carousel-container">
+            <div class="carousel-content animated fadeInUp">
+              <h2>Sequi ea ut et est quaerat</h2>
+              <p>we cater for all occasions Ut velit est quam dolor ad a aliquid qui aliquid. Sequi ea ut et est quaerat sequi nihil ut aliquam. Occaecati alias dolorem mollitia ut. Similique ea voluptatem. Esse doloremque accusamus repellendus deleniti vel. Minus et tempore modi architecto.</p>
+              <div class="text-center"><a href="" class="btn-get-started">Read More</a></div>
+            </div>
+          </div>
+        </div>
+
+
+
+          <!-- Slide 4  production ID_4267029 -->
+          <div class="carousel-item">
+            <video autoplay muted loop id="myVideo">
+              <source src="assets/img/slide/production ID_3805779.mp4" type="video/mp4">
+              Your browser does not support HTML5 video.
+            </video>
+            <div class="carousel-container">
+              <div class="carousel-content animated fadeInUp">
+                <h2>Sequi ea ut et est quaerat</h2>
+                <p>offering lovely 
+                  table decor and designing a selection of bouquets. Ut velit est quam dolor ad a aliquid qui aliquid. Sequi ea ut et est quaerat sequi nihil ut aliquam. Occaecati alias dolorem mollitia ut. Similique ea voluptatem. Esse doloremque accusamus repellendus deleniti vel. Minus et tempore modi architecto.</p>
+                <div class="text-center"><a href="" class="btn-get-started">Read More</a></div>
+              </div>
+            </div>
+          </div>
+
+
+                  
+         
+
+      </div>
+
+      <a class="carousel-control-prev" href="#heroCarousel" role="button" data-slide="prev">
+        <span class="carousel-control-prev-icon icofont-simple-left" aria-hidden="true"></span>
+        <span class="sr-only">Previous</span>
+      </a>
+
+      <a class="carousel-control-next" href="#heroCarousel" role="button" data-slide="next">
+        <span class="carousel-control-next-icon icofont-simple-right" aria-hidden="true"></span>
+        <span class="sr-only">Next</span>
+      </a>
+
+      <ol class="carousel-indicators" id="hero-carousel-indicators"></ol>
+
+    </div>
+  </section><!-- End Hero -->
+
+  <main id="main">
+
+    <!-- ======= About Us Section ======= -->
+    <section id="about-us" class="about-us">
+      <div class="container" data-aos="fade-up">
+
+        <div class="section-title">
+          <h2>About Us</strong></h2>
+        </div>
+
+        <div class="row content">
+          <div class="col-lg-6" data-aos="fade-right">
+            <h2>FlowerBoss</h2>
+            <h3>taking floral presentation to a new level</h3>
+          </div>
+          <div class="col-lg-6 pt-4 pt-lg-0" data-aos="fade-left">
+            <p>
+           We cater for all occasions, offering lovely 
+           table decor and designing a selection of bouquets, baskets and boxes in a choice of stylish, contemporary or 
+           traditional styles. Our experienced and talented floral design team will create colourful and artistic 
+           arrangements for any occasion. Flower boss has plenty to offer
+            </p>
+            <ul>
+              <!-- Flowers
+Vases
+Dried fruit and Nuts
+Pot plants
+Phaelanopsis
+Party stuff
+Gifts
+Balloons (all shapes and sizes) (helium included)
+Yankee Candles
+Beauty factory products and much more -->
+              <li><i class="ri-check-double-line"></i>Vases</li>
+              <li><i class="ri-check-double-line"></i> Dried fruit and Nuts</li>
+              <li><i class="ri-check-double-line"></i> Pot plants</li>
+              <li><i class="ri-check-double-line"></i> Phaelanopsis</li>
+              <li><i class="ri-check-double-line"></i> Party stuff</li>
+              <li><i class="ri-check-double-line"></i> Gifts</li>
+              <li><i class="ri-check-double-line"></i> Balloons (all shapes and sizes) (helium included)</li>
+              <li><i class="ri-check-double-line"></i> Yankee Candles</li>
+              <li><i class="ri-check-double-line"></i> Beauty factory products and much more</li>
+
+            </ul>
+            <p class="font-italic">
+              We also have a selection of gourmet baskets, scented candles, glassware, garden gift ware, sweets, 
+              chocolates, oils, incense, balloons and teddy bears. Chat to us to see how you can personalise 
+              your special gift.
+            </p>
+          </div>
+        </div>
+
+      </div>
+    </section><!-- End About Us Section -->
+
+    <!-- ======= Services Section ======= -->
+    <section id="services" class="services section-bg">
+      <div class="container" data-aos="fade-up">
+
+        <div class="section-title">
+          <h2>Services</strong></h2>
+          <p>Laborum repudiandae omnis voluptatum consequatur mollitia ea est voluptas ut</p>
+        </div>
+
+     
+        <div class="row">
+          <div class="col-lg-4 col-md-6 d-flex align-items-stretch" data-aos="zoom-in" data-aos-delay="100">
+            <div class="icon-box iconbox-blue">
+              <div class="icon">
+                <i class="fas fa-glass-cheers fa-4x"></i>
+              </div>
+              <h4><a href="">Party</a></h4>
+              <p>Party decoration equiments  Party 
+                decoration equiments Lorem ipsum, dolor sit 
+                amet consectetur adipisicing elit. Repudiandae</p>
+            </div>
+          </div>
+
+          <div class="col-lg-4 col-md-6 d-flex align-items-stretch mt-4 mt-md-0" data-aos="zoom-in" data-aos-delay="200">
+            <div class="icon-box iconbox-orange ">
+              <div class="icon">
+                  <i class="fas fa-gift fa-4x"></i>
+              </div>
+              <h4><a href="">Gifts</a></h4>
+              <p>gift wrapper for any type of present Party
+                 decoration equiments Lorem ipsum, dolor sit 
+                amet consectetur adipisicing elit. Repudiandae</p>
+            </div>
+          </div>
+
+          <div class="col-lg-4 col-md-6 d-flex align-items-stretch mt-4 mt-lg-0" data-aos="zoom-in" data-aos-delay="300">
+            <div class="icon-box iconbox-pink">
+              <div class="icon">
+                <div>
+                  <span> <i class="fab fa-raspberry-pi fa-4x"></i></span>
+                </div>
+              </div>
+              <h4><a href="">Dried fruit and Nuts</a></h4>
+              <p>Party decoration equiments Lorem ipsum, dolor sit 
+                amet consectetur adipisicing elit. Repudiandae </p>
+            </div>
+          </div>
+
+          <div class="col-lg-4 col-md-6 d-flex align-items-stretch mt-4" data-aos="zoom-in" data-aos-delay="100">
+            <div class="icon-box iconbox-yellow">
+              <div class="icon">
+                <div>
+                  <span> <i class="fas fa-gifts fa-4x"></i></span>
+                </div>
+              </div>
+              <h4><a href="">Present wrapper</a></h4>
+              <p>Party decoration equiments Lorem ipsum, dolor sit 
+                amet consectetur adipisicing elit. Repudiandae</p>
+            </div>
+          </div>
+
+         <div class="col-lg-4 col-md-6 d-flex align-items-stretch mt-4" data-aos="zoom-in" data-aos-delay="200">
+            <div class="icon-box iconbox-red">
+              <div class="icon">
+                <div>
+                  <span> <i class="fas fa-birthday-cake fa-4x"></i></span>
+                </div>
+              </div>
+              <h4><a href="">Party</a></h4>
+              <p>Party decoration equiments Lorem ipsum, dolor sit 
+                amet consectetur adipisicing elit. Repudiandae</p>
+            </div>
+          </div>
+
+<!-- 
+          <div class="col-lg-4 col-md-6 d-flex align-items-stretch mt-4" data-aos="zoom-in" data-aos-delay="200">
+            <div class="icon-box iconbox-red">
+              <div class="icon">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24"><path fill="none" d="M0 0H24V24H0z"/>
+                  <path d="M6 3c3.49 0 6.383 2.554 6.913 5.895C14.088 7.724 15.71 7 17.5 7H22v2.5c0 3.59-2.91 6.5-6.5 6.5H13v5h-2v-8H9c-3.866 0-7-3.134-7-7V3h4zm14 6h-2.5c-2.485 0-4.5 2.015-4.5 4.5v.5h2.5c2.485 0 4.5-2.015 4.5-4.5V9zM6 5H4v1c0 2.761 2.239 5 5 5h2v-1c0-2.761-2.239-5-5-5z"/></svg>
+                <i class="bx bx-slideshow"></i> 
+              </div>
+              <h4><a href="">Dele Cardo</a></h4>
+              <p>Quis consequatur saepe eligendi voluptatem consequatur dolor consequuntur</p>
+            </div>
+          </div> -->
+
+         <!--   <div class="col-lg-4 col-md-6 d-flex align-items-stretch mt-4" data-aos="zoom-in" data-aos-delay="300">
+            <div class="icon-box iconbox-teal">
+              <div class="icon">
+                <div>
+                  <span> <i class="fas fa-glass-cheers fa-4x"></i></span>
+                </div>
+              </div>
+              <h4><a href="">Party</a></h4>
+              <p>Party decoration equiments</p>
+            </div>
+          </div> -->
+
+        </div>
+
+      </div>
+    </section><!-- End Services Section -->
+
+    <!-- ======= Portfolio Section ======= -->
+    <section id="portfolio" class="portfolio">
+      <div class="container">
+
+        <div class="section-title" data-aos="fade-up">
+          <h2>Portfolio</h2>
+        </div>
+
+        <div class="row" data-aos="fade-up">
+          <div class="col-lg-12 d-flex justify-content-center">
+            <ul id="portfolio-flters">
+              <li data-filter="*" class="filter-active">All</li>
+              <li data-filter=".filter-app">App</li>
+              <li data-filter=".filter-card">Card</li>
+              <li data-filter=".filter-web">Web</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="row portfolio-container" data-aos="fade-up">
+
+          <div class="col-lg-4 col-md-6 portfolio-item filter-app">
+            <img src="assets/img/portfolio/portfolio-1.jpg" class="img-fluid" alt="">
+            <div class="portfolio-info">
+              <h4>App 1</h4>
+              <p>App</p>
+              <a href="assets/img/portfolio/portfolio-1.jpg" data-gall="portfolioGallery" class="venobox preview-link" title="App 1"><i class="bx bx-plus"></i></a>
+              <a href="portfolio-details.html" class="details-link" title="More Details"><i class="bx bx-link"></i></a>
+            </div>
+          </div>
+
+          <div class="col-lg-4 col-md-6 portfolio-item filter-web">
+            <img src="assets/img/portfolio/portfolio-2.jpg" class="img-fluid" alt="">
+            <div class="portfolio-info">
+              <h4>Web 3</h4>
+              <p>Web</p>
+              <a href="assets/img/portfolio/portfolio-2.jpg" data-gall="portfolioGallery" class="venobox preview-link" title="Web 3"><i class="bx bx-plus"></i></a>
+              <a href="portfolio-details.html" class="details-link" title="More Details"><i class="bx bx-link"></i></a>
+            </div>
+          </div>
+
+          <div class="col-lg-4 col-md-6 portfolio-item filter-app">
+            <img src="assets/img/portfolio/Helium-Balloons.jpg" class="img-fluid" alt="">
+            <div class="portfolio-info">
+              <h4>App 2</h4>
+              <p>App</p>
+              <a href="assets/img/portfolio/portfolio-3.jpg" data-gall="portfolioGallery" class="venobox preview-link" title="App 2"><i class="bx bx-plus"></i></a>
+              <a href="portfolio-details.html" class="details-link" title="More Details"><i class="bx bx-link"></i></a>
+            </div>
+          </div>
+
+          <div class="col-lg-4 col-md-6 portfolio-item filter-card">
+            <img src="assets/img/portfolio/portfolio-4.jpg" class="img-fluid" alt="">
+            <div class="portfolio-info">
+              <h4>Card 2</h4>
+              <p>Card</p>
+              <a href="assets/img/portfolio/portfolio-4.jpg" data-gall="portfolioGallery" class="venobox preview-link" title="Card 2"><i class="bx bx-plus"></i></a>
+              <a href="portfolio-details.html" class="details-link" title="More Details"><i class="bx bx-link"></i></a>
+            </div>
+          </div>
+
+          <div class="col-lg-4 col-md-6 portfolio-item filter-web">
+            <img src="assets/img/portfolio/Candles.jpg" class="img-fluid" alt="">
+            <div class="portfolio-info">
+              <h4>Web 2</h4>
+              <p>Web</p>
+              <a href="assets/img/portfolio/Candles.jpg" data-gall="portfolioGallery" class="venobox preview-link" title="Web 2"><i class="bx bx-plus"></i></a>
+              <a href="portfolio-details.html" class="details-link" title="More Details"><i class="bx bx-link"></i></a>
+            </div>
+          </div>
+
+          <div class="col-lg-4 col-md-6 portfolio-item filter-app">
+            <img src="assets/img/portfolio/portfolio-6.jpg" class="img-fluid" alt="">
+            <div class="portfolio-info">
+              <h4>App 3</h4>
+              <p>App</p>
+              <a href="assets/img/portfolio/portfolio-6.jpg" data-gall="portfolioGallery" class="venobox preview-link" title="App 3"><i class="bx bx-plus"></i></a>
+              <a href="portfolio-details.html" class="details-link" title="More Details"><i class="bx bx-link"></i></a>
+            </div>
+          </div>
+
+          <div class="col-lg-4 col-md-6 portfolio-item filter-card">
+            <img src="assets/img/portfolio/portfolio-7.jpg" class="img-fluid" alt="">
+            <div class="portfolio-info">
+              <h4>Card 1</h4>
+              <p>Card</p>
+              <a href="assets/img/portfolio/portfolio-7.jpg" data-gall="portfolioGallery" class="venobox preview-link" title="Card 1"><i class="bx bx-plus"></i></a>
+              <a href="portfolio-details.html" class="details-link" title="More Details"><i class="bx bx-link"></i></a>
+            </div>
+          </div>
+
+          <div class="col-lg-4 col-md-6 portfolio-item filter-card">
+            <img src="assets/img/portfolio/Corporate-Gifts.jpg" class="img-fluid" alt="">
+            <div class="portfolio-info">
+              <h4>Card 3</h4>
+              <p>Card</p>
+              <a href="assets/img/portfolio/Corporate-Gifts.jpg" data-gall="portfolioGallery" class="venobox preview-link" title="Card 3"><i class="bx bx-plus"></i></a>
+              <a href="portfolio-details.html" class="details-link" title="More Details"><i class="bx bx-link"></i></a>
+            </div>
+          </div>
+
+          <div class="col-lg-4 col-md-6 portfolio-item filter-web">
+            <img src="assets/img/portfolio/portfolio-9.jpg" class="img-fluid" alt="">
+            <div class="portfolio-info">
+              <h4>Web 3</h4>
+              <p>Web</p>
+              <a href="assets/img/portfolio/portfolio-9.jpg" data-gall="portfolioGallery" class="venobox preview-link" title="Web 3"><i class="bx bx-plus"></i></a>
+              <a href="portfolio-details.html" class="details-link" title="More Details"><i class="bx bx-link"></i></a>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+    </section><!-- End Portfolio Section -->
+
+    <!-- ======= Our Clients Section ======= -->
+    <section id="clients" class="clients">
+      <div class="container" data-aos="fade-up">
+
+        <div class="section-title">
+          <h2>Clients</h2>
+        </div>
+
+        <div class="row no-gutters clients-wrap clearfix" data-aos="fade-up">
+
+          <div class="col-lg-3 col-md-4 col-6">
+            <div class="client-logo">
+              <img src="assets/img/clients/client-1.png" class="img-fluid" alt="">
+            </div>
+          </div>
+
+          <div class="col-lg-3 col-md-4 col-6">
+            <div class="client-logo">
+              <img src="assets/img/clients/client-2.png" class="img-fluid" alt="">
+            </div>
+          </div>
+
+          <div class="col-lg-3 col-md-4 col-6">
+            <div class="client-logo">
+              <img src="assets/img/clients/client-3.png" class="img-fluid" alt="">
+            </div>
+          </div>
+
+          <div class="col-lg-3 col-md-4 col-6">
+            <div class="client-logo">
+              <img src="assets/img/clients/client-4.png" class="img-fluid" alt="">
+            </div>
+          </div>
+
+          <div class="col-lg-3 col-md-4 col-6">
+            <div class="client-logo">
+              <img src="assets/img/clients/client-5.png" class="img-fluid" alt="">
+            </div>
+          </div>
+
+          <div class="col-lg-3 col-md-4 col-6">
+            <div class="client-logo">
+              <img src="assets/img/clients/client-6.png" class="img-fluid" alt="">
+            </div>
+          </div>
+
+          <div class="col-lg-3 col-md-4 col-6">
+            <div class="client-logo">
+              <img src="assets/img/clients/client-7.png" class="img-fluid" alt="">
+            </div>
+          </div>
+
+          <div class="col-lg-3 col-md-4 col-6">
+            <div class="client-logo">
+              <img src="assets/img/clients/client-8.png" class="img-fluid" alt="">
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+    </section><!-- End Our Clients Section -->
+
+  </main><!-- End #main -->
+
+
+  <!-- end chat -->
+
+  <!-- ======= Footer ======= -->
+  <footer id="footer">
+
+    <div class="footer-top">
+      <div class="container">
+        <div class="row">
+
+          <div class="col-lg-3 col-md-6 footer-contact">
+            <h3>FlowerBoss</h3>
+            <p>
+              Bryanpark Shopping Centre
+              Cnr Grosvenor Road & Cumberland Avenue,
+              Sandton, Gauteng <br><br>
+              <strong>Phone:</strong>Tel: 011 463 3498
+              <br>
+              <strong>Phone:</strong>Tel: 074 123 8790
+              <br>
+              <strong>Email:</strong>info@flowerboss.co.za<br>
+            </p>
+          </div>
+
+          <div class="col-lg-2 col-md-6 footer-links">
+            <h4>Useful Links</h4>
+            <ul>
+              <li><i class="bx bx-chevron-right"></i> <a href="#">Home</a></li>
+              <li><i class="bx bx-chevron-right"></i> <a href="#">About us</a></li>
+              <li><i class="bx bx-chevron-right"></i> <a href="#">Services</a></li>
+              <li><i class="bx bx-chevron-right"></i> <a href="#">Terms of service</a></li>
+              <li><i class="bx bx-chevron-right"></i> <a href="#">Privacy policy</a></li>
+            </ul>
+          </div>
+
+     
+
+          <div class="col-lg-3 col-md-6 footer-links">
+            <h4>Our Services</h4>
+            <ul>
+              <li><i class="bx bx-chevron-right"></i> <a href="#">Balloons (all shapes and sizes) (helium included)</a></li>
+              <li><i class="bx bx-chevron-right"></i> <a href="#">Yankee Candles</a></li>
+              <li><i class="bx bx-chevron-right"></i> <a href="#">Gifts</a></li>
+              <li><i class="bx bx-chevron-right"></i> <a href="#">Phaelanopsis</a></li>
+              <li><i class="bx bx-chevron-right"></i> <a href="#">Dried fruit and Nuts</a></li>
+            </ul>
+          </div>
+
+          <!-- <div class="col-lg-4 col-md-6 footer-newsletter">
+            <h4>Join Our Newsletter</h4>
+            <p>Tamen quem nulla quae legam multos aute sint culpa legam noster magna</p>
+            <form action="" method="post">
+              <input type="email" name="email"><input type="submit" value="Subscribe">
+            </form>
+          </div> -->
+
+        </div>
+      </div>
+    </div>
+
+    <div class="container d-md-flex py-4">
+
+      <div class="mr-md-auto text-center text-md-left">
+        <div class="copyright">
+          &copy; Copyright <strong><span>FlowerBoss</span></strong>. All Rights Reserved
+        </div>
+        <div class="credits">
+          <!-- All the links in the footer should remain intact. -->
+          <!-- You can delete the links only if you purchased the pro version. -->
+          <!-- Licensing information: https://bootstrapmade.com/license/ -->
+          <!-- Purchase the pro version with working PHP/AJAX contact form: https://bootstrapmade.com/company-free-html-bootstrap-template/ -->
+          Create by <a href="">DN Application</a>
+        </div>
+      </div>
+      <div class="social-links text-center text-md-right pt-3 pt-md-0">
+        <a href="#" class="twitter"><i class="bx bxl-twitter"></i></a>
+        <a href="#" class="facebook"><i class="bx bxl-facebook"></i></a>
+        <a href="#" class="instagram"><i class="bx bxl-instagram"></i></a>
+        <a href="#" class="google-plus"><i class="bx bxl-skype"></i></a>
+        <a href="#" class="linkedin"><i class="bx bxl-linkedin"></i></a>
+      </div>
+    </div>
+  </footer><!-- End Footer -->
+
+  <!-- <div class="chat_back-to-top"> -->
+  
+  <!-- </div> -->
+
+  <div id="chatter" class="container"> 
+    <div class="chat-revealed" id="revealed" onClick="revealed_chat_click('<%= own_token %>_Online')"><i class="fa fa-comment fa-3x" style="color: rgb(236, 6, 141);"></i></div>
+    <div class="chat-revealed" id="revealed_chat"  style="display: none;" ><i class="fa fa-comment fa-3x" style="color: rgb(236, 6, 141);"></i></div>
+    <div  id="initForm" class="jumbotron" style="display: <%= show_init_form %>;">
+
+   <label for="" style="margin-bottom: 20px;"><h3 class="text-muted" style="color: black;">Live Chat</h3></label> 
+      
+     <div class="form-group">
+         <label for="username" style="color: black;">Email</label>
+         <input id="userEmail" name="email" value="admincount@gmail.com" type="text" class="form-control" placeholder="Enter name">
+
+         <label for="username" style="color: black;">Name</label>
+         <input id="userName" name="name" type="text" class="form-control" placeholder="Enter name">
+
+         <!-- <label for="username" style="color: black;">Cellnumber</label>
+         <input name="email" value="0874595861" type="text" class="form-control" placeholder="Enter name"> -->
+     </div>
+
+       <button class="btn btn-primary" id="<%= own_token %>_submit" onClick="buttonSend_click(this.id)"  style="margin-bottom: 10px;">Submit</button>
+
+      </div>  
+
+
+      
+  <!-- <audio id="messageNotice">
+		<source src="assets/audio/messageNotice.mp3"></source>
+  </audio> -->
+
+  
+  <audio id="notification_up">
+		<source src="assets/audio/notification_up.wav"></source>
+  </audio>
+
+    
+      <div id="chat-container" >
+
+      
+    
+        <!---************************** Chat skeleton **************************-->
+        <!---************************** Chat skeleton **************************-->
+        <div class="msg-header">
+          <button id="hide_button" class="btn" style="float: right; margin: 5px; background-color: white; color: rgb(236, 6, 141);">Hide</button>
+          <div>
+            <!-- <img class="msg-header-img" src="img_made/men.jpeg" alt=""> -->
+           
+          </div>
+          <div id="chat_activee" class="chat_active">
+            <!-- <div id="identify" style="display: none;"></div> -->
+              <h4 id="profileName"><%= profile_nameDB %></h4>
+              <h4 id="profileName_hidden" style="display: none;"><%= hidden_name_DB %></h4>
+              <h6> </h6>
+              <!-- <span><i class="fa fa-circle" aria-hidden="true" style="color: green;"></i></span> -->
+          </div>
+      </div>
+     
+      <div class="chat-page" id="chatPage">
+          <div class="msg-inbox" id="msgInbox">
+              <div class="chats" id="chats">
+                  <div class="msg-page" id="msgPage">
+
+
+                   <% 
+                    for (let index = 0; index < arrayData.length; index++) {
+                        if (arrayData[index].identifyuser == own_token) { 
+
+                          if (arrayData[index].sender !== "Salesman") { %>
+                        
+                        <div style="overflow: hidden; margin: 26px 20px;">
+                          <div style="float: right; width: 70%; margin-left: 0px;">
+                            <p style="background: none 0px 0px repeat scroll rgb(236, 6, 141); color: rgb(255, 255, 255); border-radius: 20px 0px 20px 20px; font-size: 14px; margin: 0px; padding: 5px 10px 5px 12px; width: 100%;">
+                              <%= arrayData[index].chat %> <br> <br> <span>Read <i class="fas fa-check-double"></i> </span></p>
+                              <span style="color: rgb(119, 119, 119); display: block; font-size: 12px; margin: 8px 0px 0px;"><%= arrayData[index].sender %> <%= arrayData[index].timeStore %></span>
+                         
+                              <!-- <i class="fas fa-check"></i> -->
+                            </div><div style="display: inline-block; width: 20px; float: right;">
+                          </div>
+                      </div>
+
+                     <% } else { %>
+                        
+                        <div>
+                          <div></div>
+                          <div style="display: inline-block; padding: 0px 0px 0px 10px; vertical-align: top; width: 92%;">
+                              <div style="width: 70%;">
+                                  <p style="background: none 0px 0px repeat scroll rgb(239, 239, 239); border-radius: 0px 20px 20px; color: rgb(100, 100, 100); font-size: 14px; margin: 0px; padding: 5px 10px 5px 12px; width: 100%;">
+                                    <%= arrayData[index].chat %> <br> <br> <span>Delivered <i class="fas fa-check"></i>  </span></p>
+                                  <span style="color: rgb(119, 119, 119); display: block; font-size: 12px; margin: 8px 0px;">
+                                    <%= arrayData[index].sender %>  <%= arrayData[index].timeStore %></span>
+                              </div>
+                          </div>
+                      </div>
+
+                    <%  }  
+                          
+                        }
+                        
+                      }
+
+                   %>
+                    
+                 
+            
+
+                 <!--receive grey
+                                  <div class="received-chats">
+                                      <div class="received-chats-img">
+                                      </div>
+                                      <div class="received-msg" id="receivedMsg">
+                                      <div class="received-msg-inbox" id="send8">
+                                      <p>arrayData[index].chat</p>
+
+                                      <span class="time">moment(test_chat_req[index].updatedAt).format('MMMM Do YYYY, h:mm a')</span> 
+                                      <span class="time">11:01 PM | October 11</span>
+
+                                      </div>
+                                      </div>
+                                      </div>-->
+                                      
+                                          <!--send green
+                              <div class="outgoing-chats">
+                                  <div class="outgoing-chats-msg" id="send4" >
+                                          <p></p>
+                                          <span class="time">11:01 PM | October 11</span>
+                                  </div>
+                                  <div class="outgoing-chats-img" id="send5">
+                                  </div>
+                                  </div>-->
+  
+                               
+  
+                  </div>
+                  </div>
+                  </div>
+                  </div>
+  
+                  <div class="msg-bottom">
+                      <div class="input-group" id="chat_input-group">
+                          <input id="inputmsg" type="text" class="form-control" placeholder="write message...">
+                         <div class="input-group-append">
+                          <button id="<%= own_token %>" onClick="realbuttonSend_click(this.id)" class="btn" style="background-color: rgb(236, 6, 141); margin-left: 20px; color: white;" >Send</button>
+                         </div>
+                          <!-- <div class="input-group-append">
+                              <span class="chat_input-group-text"> <i id="sender"class="fa fa-paper-plane"></i></span>
+                          </div> -->
+                      </div>
+                  </div>   
+  
+        <!---************************** Chat skeleton **************************-->
+        <!---************************** Chat skeleton **************************-->
+  
+       
+        <h5 class="text-muted" style="margin-top: 20px;">LiveChat Power by DN Application</h5>
+      </div>
+
+
+    </div>
+
+
+   
+  </div>
+  <!-- <a href="#" class="back-to-top"><i class="icofont-simple-up"></i></a> -->
+
+
+
+
+  <!-- Vendor JS Files -->
+  <script src="assets/vendor/jquery/jquery.min.js"></script>
+  <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script src="assets/vendor/jquery.easing/jquery.easing.min.js"></script>
+  <script src="assets/vendor/php-email-form/validate.js"></script>
+  <script src="assets/vendor/jquery-sticky/jquery.sticky.js"></script>
+  <script src="assets/vendor/isotope-layout/isotope.pkgd.min.js"></script>
+  <script src="assets/vendor/venobox/venobox.min.js"></script>
+  <script src="assets/vendor/waypoints/jquery.waypoints.min.js"></script>
+  <script src="assets/vendor/owl.carousel/owl.carousel.min.js"></script>
+  <script src="assets/vendor/aos/aos.js"></script>
+
+  <!-- Template Main JS File -->
+  <script src="assets/js/main.js"></script>
+<script src="https://use.fontawesome.com/releases/v5.6.0/js/all.js"></script>
+<!-- <script src="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"></script> -->
+
+<script>
+       //declare variables  initForm userName receivedMsg
+var chats = document.getElementById("chats");
+
+var greyMsgbox = document.getElementById("send4");
+var timebox = document.getElementById("send4"); //profileName_hidden
+var profileName = document.getElementById("profileName");
+var profileName_hidden = document.getElementById("profileName_hidden");
+
+
+var initForm = document.getElementById("initForm");
+var userName = document.getElementById("userName");
+var userEmail = document.getElementById("userEmail");
+
+var greyMsgbox = document.getElementById("send8");
+var timeboxReceive = document.getElementById("send8");
+  var socket = io.connect();  
+//  var socket = io('http://localhost: 8000');
+var inputmsg = document.getElementById("inputmsg");
+var msgPage = document.getElementById("msgPage");
+var text;
+var enterHere = ['hello'];
+
+socket.emit('init_website', socket.id)
+
+
+//we create date object so that we can use the variety of method 
+//in the Date class e.g second, minute ect..
+var d = new Date();
+var m = new Date();
+var mt = new Date();
+var dd = new Date();
+var s = new Date();
+
+//we declare and populate the array with month name
+//because the month method only return a number from one to tweve
+// with this array we can identify which element/month the number that was return 
+//refer to
+var months = ["January", "February", "March", "April",
+"May", "June", "July", "August", "September", "October",
+"November", "December"];
+
+
+//reveal chat box
+//here we create a chat icon that reveal a form when it click
+
+
+  
+  
+document.getElementById("revealed").addEventListener("click", function() {
+
+        if ('<%= have_db  %>' == "yes") {
+        // console.log("socket id: "+socket.id)
+        // console.log("you click revealed")
+      document.getElementById("initForm").style.display = "<%= show_init_form %>"
+      document.getElementById("chat-container").style.display = "<%= show_chat %>";
+      document.getElementById("revealed").style.display = "none";
+      }else {
+        
+        // console.log("socket id: "+socket.id)
+        // console.log("you click revealed")
+      document.getElementById("initForm").style.display = "block"
+      document.getElementById("chat-container").style.display = "none";
+      document.getElementById("revealed").style.display = "none";
+
+      }
+
+});
+
+
+
+
+
+
+// you can open or close the chat window after you've opened it 
+document.getElementById("hide_button").addEventListener("click", function() {
+ 
+document.getElementById("chat-container").style.display = "none";
+document.getElementById("revealed_chat").style.display = "block";
+
+})
+
+// you can open or close the chat window after you've opened it
+document.getElementById("revealed_chat").addEventListener("click", function() {
+ 
+
+ document.getElementById("chat-container").style.display = "block";
+ document.getElementById("revealed_chat").style.display = "none";
+ 
+ })
+
+ function revealed_chat_click(user_is_online) {
+   console.log("user_is_online: "+user_is_online)
+ }
+
+
+socket.on("connect", function() {
+  var tt = socket.id
+  var tt3 = socket.id+"<%= own_token %>_Online"
+  // console.log("socket length: "+tt.length)
+  // console.log("socket+token length: "+tt3.length)
+  // console.log("before socket+token: "+tt3)
+  // console.log("after socket+token: "+tt3.slice(20,tt3.length))
+  // console.log("connect connect connect: "+"<%= own_token %>_Online")
+  socket.emit("client_online", "<%= own_token %>_Online")
+  socket.emit("client_online_token_and_socketId", socket.id+"<%= own_token %>_Online")
+})
+
+ 
+function buttonSend_click(click_id)
+{
+ 
+         //   console.log("818 token id button_send: "+click_id)
+            var actual_token_fromButtonSubmitID = click_id.slice(0,156)
+          //  console.log("click_id.slice(0,156): "+actual_token_fromButtonSubmitID)
+    //var pos = str.replace("_submit", '')
+     // var pos = actual_token_fromButtonSubmitID.search("_submit");
+    //  var length_str = actual_token_fromButtonSubmitID.length;
+     // var slice_str_token = actual_token_fromButtonSubmitID.slice(0, pos);
+      var slice_str_token = actual_token_fromButtonSubmitID.replace("_submit", '')
+     // console.log("slice_str_token: "+slice_str_token)
+          
+            // console.log("click_id _156: "+ _156)
+            // console.log("click_id _149: "+ _149)
+
+            socket.emit('connect_to_thisId', {
+              id: socket.id, 
+              name: userName.value, 
+                email: userEmail.value, 
+                button_token: slice_str_token })
+
+               
+             var identify_hidden_socketId_div = document.createElement('div')
+             //identify_hidden_socketId_div.setAttribute("id", userName.value+"_"+socket.id+"_"+slice_str_token+"_")
+             identify_hidden_socketId_div.setAttribute("id", socket.id)
+             identify_hidden_socketId_div.style.display= "none"
+
+        socket.emit('new user', userName.value, function(data){
+        if(data)
+        {
+        document.getElementById("initForm").style.display = "none";
+        document.getElementById("chat-container").style.display = "block";
+        }
+        }); // profileName_hidden
+        profileName.innerText = "Salesman" //userName.value;
+        profileName_hidden.innerText = userName.value;
+        c_active = document.getElementById("chat_activee")
+        identify_div = document.createElement("div")
+        identify_div.style.display = "none"
+        identify_div.setAttribute("id", userName.value+"_"+socket.id)
+        c_active.appendChild(identify_div)
+        c_active.appendChild(identify_hidden_socketId_div)
+        //document.getElementById("identify").innerText = userName.value+"_"+socket.id
+        // console.log("(after form) profileName.innerText: "+profileName.innerText);
+        // console.log("profileName[0]: "+profileName.innerText.substring(1,0));
+        userName.value = '';
+            
+}
+
+//enter name
+//when the form is reveal the user is require to enter his/her user name
+//when the user name is submitted the live chat interface is reveal
+// document.getElementById("chat_bution").addEventListener("click", function() {
+
+  
+//   socket.emit('connect_to_thisId', {id: socket.id, name: userName.value, email: userEmail.value })
+
+// socket.emit('new user', userName.value, function(data){
+// if(data)
+// {
+// document.getElementById("initForm").style.display = "none";
+// document.getElementById("chat-container").style.display = "block";
+// }
+// }); // profileName_hidden
+// profileName.innerText = "Salesman" //userName.value;
+// profileName_hidden.innerText = userName.value;
+// c_active = document.getElementById("chat_activee")
+// identify_div = document.createElement("div")
+// identify_div.style.display = "none"
+// identify_div.setAttribute("id", userName.value+"_"+socket.id)
+// c_active.appendChild(identify_div)
+// //document.getElementById("identify").innerText = userName.value+"_"+socket.id
+// // console.log("(after form) profileName.innerText: "+profileName.innerText);
+// // console.log("profileName[0]: "+profileName.innerText.substring(1,0));
+// userName.value = '';
+// });
+
+
+
+
+//get the users
+//this function get the username that was enter in the form
+// socket.on('get users', function(data){
+
+// enterHere.push(data);
+
+// })
+
+      //when send button is clicked
+//this grab the chat input field and submit the data that the user enter
+// the server using socket.io library
+
+function realbuttonSend_click(click_id) {
+ if(inputmsg.value.trim().length > 0)
+    {
+
+        socket.emit("send message", 
+        {msg: inputmsg.value, 
+        name: profileName_hidden.innerText, 
+        cus_id: click_id,
+      identity_req: click_id});
+      inputmsg.value = "";
+
+    }
+
+
+}
+
+// document.getElementById("sender").addEventListener("click", function() { 
+// //take msg from input
+// // profileName.innerText
+// socket.emit("send message", {msg: inputmsg.value, name: profileName_hidden.innerText, cus_id: socket.id});
+// inputmsg.value = "";
+// });
+
+//msg transfered through socket
+//using the server with socket.io the data (message and username) 
+//is transfer to anyone that is connected
+socket.on('new message', function(data){
+
+  // console.log("data.this_customer: "+data.this_customer)
+  // console.log("document.getElementById(data.this_customer): "+ document.getElementById(data.this_customer))
+
+  if (document.getElementById(data.this_customer) ) {
+    // console.log("yes this customer")
+    // console.log("data.this_customer: "+data.this_customer)
+    //console.log("div identify: "+document.getElementById("identify").innerHTML)
+    text = data.msg;
+var clir = data.name;
+//var activeUser = data.user;
+
+// inputmsg.style.width = '20px';
+
+        if(profileName.innerText == clir)
+        {
+        //declaring the receive variables (grey)
+        var rc = document.createElement("div");
+        var rci = document.createElement("div");
+        var rmr = document.createElement("div");
+        var rmis = document.createElement("div");
+        var pCreated = document.createElement("p");
+        var timeCreated = document.createElement("span"); 
+
+
+        pCreated.innerText = text;
+        timeCreated.innerText = clir+"    "+data.timeMoment;
+      //  console.log("profileName.innerText: "+profileName.value);
+
+
+        //styling Receive-msg id= receivedMsg = rmr
+        rmr.style.display = 'inline-block';
+        rmr.style.padding = '0 0 0 10px';
+        rmr.style.verticalAlign = 'top';
+        rmr.style.width = '92%';
+
+
+        //styling Receive-msg inbox send  id = send8
+        rmis.style.width = '70%';
+
+        //styling the paragraph Received grey color
+        pCreated.style.background = '#efefef none repeat scroll 0 0';
+        pCreated.style.borderRadius = '0px 20px 20px 20px';
+        pCreated.style.color = '#646464';
+        pCreated.style.fontSize = '14px';
+        pCreated.style.margin = '0';
+        pCreated.style.padding = '5px 10px 5px 12px';
+        pCreated.style.width = '100%';
+
+
+        // styling time/name section
+        timeCreated.style.color = '#777';
+        timeCreated.style.display = 'block';
+        timeCreated.style.fontSize = '12px';
+        timeCreated.style.margin = '8px 0 8px';
+
+        msgPage.appendChild(rc);
+        rc.appendChild(rci);
+        rc.appendChild(rmr);
+        rmr.appendChild(rmis);
+        rmis.appendChild(pCreated);
+        rmis.appendChild(timeCreated);
+        msgPage.scrollTo(0,msgPage.scrollHeight);
+        }else
+        {
+        //declaring the outgoing msg variables (green)
+        var oc = document.createElement("div");
+        var ocm = document.createElement("div");
+        var oci = document.createElement("div");
+        var pCreated = document.createElement("p");
+        var timeCreated = document.createElement("span"); 
+
+
+        //styling outgoing-chats
+        oc.style.overflow = 'hidden'; 
+        oc.style.margin = '26px 20px';
+
+        //styling the paragraph outgoing green color
+        pCreated.style.background = 'rgb(236, 6, 141) none repeat scroll 0 0';''
+        pCreated.style.color = '#fff';
+        pCreated.style.borderRadius = '20px 0px 20px 20px';
+        pCreated.style.fontSize = '14px';
+        pCreated.style.margin = '0';
+        pCreated.style.color = '#fff';
+        pCreated.style.padding = '5px 10px 5px 12px';
+        pCreated.style.width = '100%';
+
+
+        // styling time/name section
+        timeCreated.style.color = '#777';
+        timeCreated.style.display = 'block';
+        timeCreated.style.fontSize = '12px';
+        timeCreated.style.margin = '8px 0 0';
+
+        //styling outgoing-chats-msg
+        ocm.style.float = 'right'; 
+        ocm.style.width = '70%';
+        ocm.style.marginLeft = '0';
+
+        //styling outgoing-chats-img
+        oci.style.display = 'inline-block';
+        oci.style.width = '20px';
+        oci.style.float = 'right';
+
+        pCreated.innerText = text;
+        timeCreated.innerText = clir+" "+data.timeMoment;
+       // console.log("profileName.innerText: "+profileName.value);
+
+
+        msgPage.appendChild(oc);
+        oc.appendChild(ocm);
+        ocm.appendChild(pCreated);
+        ocm.appendChild(timeCreated);
+        oc.appendChild(oci);
+        msgPage.scrollTo(0,msgPage.scrollHeight);
+        }
+
+  } else {
+    console.log("no not this customer")
+   
+  }
+
+
+});
+
+
+// msg from admin
+
+socket.on('new messageAdmin', function(data){
+
+// console.log("data.this_customer: "+data.this_customer)
+// console.log("data.receiver: "+data.receiver)
+// console.log("+data.name: "+data.name)
+
+// document.getElementById("messageNotice").play();
+document.getElementById("notification_up").play();
+//console.log("document.getElementById(data.this_customer): "+ document.getElementById(data.this_customer))
+
+if (document.getElementById(data.this_customer) ) { 
+  // console.log("new messageAdmin")
+  // console.log("yes this customer")
+  // console.log("data.this_customer: "+data.this_customer)
+  //console.log("div identify: "+document.getElementById("identify").innerHTML)
+  text = data.msg;
+var clir = data.receiver;
+//var activeUser = data.user;
+
+// inputmsg.style.width = '20px';
+
+      if("Salesman" !== clir)
+      {
+      //declaring the receive variables (grey)
+      var rc = document.createElement("div");
+      var rci = document.createElement("div");
+      var rmr = document.createElement("div");
+      var rmis = document.createElement("div");
+      var pCreated = document.createElement("p");
+      var timeCreated = document.createElement("span");
+
+
+      pCreated.innerText = text;
+      timeCreated.innerText = data.name+"    "+data.timeMoment;
+     // console.log("profileName.innerText: "+profileName.value);
+
+
+      //styling Receive-msg id= receivedMsg = rmr
+      rmr.style.display = 'inline-block';
+      rmr.style.padding = '0 0 0 10px';
+      rmr.style.verticalAlign = 'top';
+      rmr.style.width = '92%';
+
+
+      //styling Receive-msg inbox send  id = send8
+      rmis.style.width = '70%';
+
+      //styling the paragraph Received grey color
+      pCreated.style.background = '#efefef none repeat scroll 0 0';
+      pCreated.style.borderRadius = '0px 20px 20px 20px';
+      pCreated.style.color = '#646464';
+      pCreated.style.fontSize = '14px';
+      pCreated.style.margin = '0';
+      pCreated.style.padding = '5px 10px 5px 12px';
+      pCreated.style.width = '100%';
+
+
+      // styling time/name section
+      timeCreated.style.color = '#777';
+      timeCreated.style.display = 'block';
+      timeCreated.style.fontSize = '12px';
+      timeCreated.style.margin = '8px 0 8px';
+
+      msgPage.appendChild(rc);
+      rc.appendChild(rci);
+      rc.appendChild(rmr);
+      rmr.appendChild(rmis);
+      rmis.appendChild(pCreated);
+      rmis.appendChild(timeCreated);
+      msgPage.scrollTo(0,msgPage.scrollHeight);
+      }else
+      {
+      //declaring the outgoing msg variables (green)
+      var oc = document.createElement("div");
+      var ocm = document.createElement("div");
+      var oci = document.createElement("div");
+      var pCreated = document.createElement("p");
+      var timeCreated = document.createElement("span");
+
+
+      //styling outgoing-chats
+      oc.style.overflow = 'hidden'; 
+      oc.style.margin = '26px 20px';
+
+      //styling the paragraph outgoing green color
+      pCreated.style.background = 'rgb(236, 6, 141) none repeat scroll 0 0';''
+      pCreated.style.color = '#fff';
+      pCreated.style.borderRadius = '20px 0px 20px 20px';
+      pCreated.style.fontSize = '14px';
+      pCreated.style.margin = '0';
+      pCreated.style.color = '#fff';
+      pCreated.style.padding = '5px 10px 5px 12px';
+      pCreated.style.width = '100%';
+
+
+      // styling time/name section
+      timeCreated.style.color = '#777';
+      timeCreated.style.display = 'block';
+      timeCreated.style.fontSize = '12px';
+      timeCreated.style.margin = '8px 0 0';
+
+      //styling outgoing-chats-msg
+      ocm.style.float = 'right'; 
+      ocm.style.width = '70%';
+      ocm.style.marginLeft = '0';
+
+      //styling outgoing-chats-img
+      oci.style.display = 'inline-block';
+      oci.style.width = '20px';
+      oci.style.float = 'right';
+
+      pCreated.innerText = text;
+      timeCreated.innerText = data.receiver+" "+data.timeMoment;
+      //console.log("profileName.innerText: "+profileName.value);
+
+
+      msgPage.appendChild(oc);
+      oc.appendChild(ocm);
+      ocm.appendChild(pCreated);
+      ocm.appendChild(timeCreated);
+      oc.appendChild(oci);
+      msgPage.scrollTo(0,msgPage.scrollHeight);
+      }
+
+} else {
+  console.log("no not this customer")
+ 
+}
+
+
+});
+
+
+socket.on("this_socket_disconnect", function(data){
+  console.log("this id got disconnected: "+data) 
+})
+
+function itTime() {
+return months[mt.getMonth()]+" "+dd.getDate();
+}
+  
+     
+</script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.27.0/moment.min.js"></script>
+
+</body>
+
+</html>
