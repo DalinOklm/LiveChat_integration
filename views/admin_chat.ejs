@@ -4,6 +4,7 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
 <script src="/socket.io/socket.io.js"></script>
+<link href="assets/img/fbossicon.png" rel="icon">
 
 <style>
     body{
@@ -527,7 +528,6 @@ background-color: #fff; box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0
         <h6 class="text-muted"><%= number_client_DB[index].email %></h6>
         <h6 class="text-muted" id='<%=number_client_DB[index].new_client_token %>_Online' style="width: 10%; background-color: red; color: white; ">Offline</h6>
         <button class="btn btn-primary" onClick="buttonview_click(this.id)" id='<%=number_client_DB[index].new_client_token %>_view'>view</button>
-        <!-- <button class="btn btn-danger" onClick="buttonDelete_click(this.id)" id='<%=number_client_DB[index].new_client_token %>_delete' ">Delete</button> -->
         
       
               
@@ -538,7 +538,7 @@ background-color: #fff; box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0
                 <button onClick="buttoninit_modal_Delete_click(this.id)" id='<%=number_client_DB[index].new_client_token %>_initiate_modal_delete' class="btn btn-danger">Delete chat</button>
 
                 <!-- The Modal -->
-                <div id="myModal" class="modal">
+                <div id="<%=number_client_DB[index].new_client_token %>_myModal" class="modal">
 
                 <!-- Modal content -->
                 <!-- <div class="modal-content"> -->
@@ -549,7 +549,7 @@ background-color: #fff; box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0
                 <h3 class="text-muted">Are you sure you want to delete this chat?</h3>
               
                 <div class="clearfix">
-                  <button onClick="buttonCancel_click(this.id)" id="id='<%=number_client_DB[index].new_client_token %>_button_cancel"  type="button" class="cancelbtn btn btn-primary">Cancel</button>
+                  <button onClick="buttonCancel_click(this.id)" id="<%=number_client_DB[index].new_client_token %>_button_cancel"  type="button" class="cancelbtn btn btn-primary">Cancel</button>
                   <button type="button" onClick="buttonDelete_click(this.id)" id='<%=number_client_DB[index].new_client_token %>_delete' class="deletebtn btn btn-danger">Delete</button>
                 </div>
               </div>
@@ -784,14 +784,7 @@ socket.on("token_socket_disconnect", function(data){
     // ****************************************
 
         
-        // Get the modal
-        var modal = document.getElementById("myModal");
-
-        // Get the button that opens the modal
-        // var btn = document.getElementById("myBtn");
-
-        // Get the <span> element that closes the modal
-        var span = document.getElementsByClassName("close")[0];
+     
 
         // When the user clicks the button, open the modal 
         // btn.onclick = function() {
@@ -803,17 +796,7 @@ socket.on("token_socket_disconnect", function(data){
         //   modal.style.display = "block";
         // })
 
-        // When the user clicks on <span> (x), close the modal
-        span.onclick = function() {
-        modal.style.display = "none";
-        }
-
-        // When the user clicks anywhere outside of the modal, close it
-        window.onclick = function(event) {
-        if (event.target == modal) {
-            modal.style.display = "none";
-        }
-        }
+         
 
   // *****************************************
 
@@ -822,23 +805,50 @@ socket.on("token_socket_disconnect", function(data){
       // })
 
       function buttoninit_modal_Delete_click(params) {
-        document.getElementById("myModal").style.display='block';
+        console.log("button id: "+params)
+        var edit_id = params.replace("_initiate_modal_delete", "")
+        var modal = edit_id+"_myModal"
+        console.log("after edit button id: "+modal)
+
+        if (document.getElementById(edit_id+"_myModal")) {
+        document.getElementById(edit_id+"_myModal").style.display='block';
+          console.log(" ** true ** ")
+        } else {
+          console.log(" ** false ** ")
+        }
+
+                  // Get the modal
+                 // var modal = document.getElementsByClassName("modal") 
+
+        // Get the <span> element that closes the modal
+        // var span = document.getElementsByClassName("close")[0];
+
+        // // When the user clicks on <span> (x), close the modal
+        // span.onclick = function() {
+        // modal.style.display = "none";
+        // }
+
+        // // When the user clicks anywhere outside of the modal, close it
+        // window.onclick = function(event) {
+        // if (event.target == modal) {
+        // modal.style.display = "none";
+        // }
+        // }
+
       }
 
       function buttonCancel_click(data) {
-        document.getElementById("myModal").style.display='none';
+        var buttonId_after_edit = data.replace("_delete", "")
+        document.getElementById(buttonId_after_edit+"_myModal").style.display='none';
       }
 
     function buttonDelete_click(click_id) {
-       //buttonDelete_click
-   // console.log("before edit: "+click_id)
-   document.getElementById("myModal").style.display='none';
+        var buttonId_after_edit = click_id.replace("_delete", "")
+        document.getElementById(buttonId_after_edit+"_myModal").style.display='none';
 
     var buttonId_after_edit = click_id.replace("_delete", '')
+    console.log("remove this id: "+buttonId_after_edit)
     document.getElementById(buttonId_after_edit+"_well").remove()
-
-    //console.log("after edit: "+buttonId_after_edit)
-  //  console.log("id to delete: "+buttonId_after_edit)
     socket.emit('Delete_this_client', buttonId_after_edit)
 
     }
@@ -878,6 +888,7 @@ socket.on("token_socket_disconnect", function(data){
 
   well_cus.setAttribute("class", "well")
   h4_cus.setAttribute("class", "text-muted")
+  h4_cus.setAttribute("id", data.id+"_client_name")
   h6_cus.setAttribute("class", "text-muted")
   h6_cus.setAttribute("id", data.socket_id )
   i_tag_cus.setAttribute("class", "fa fa-circle")
@@ -1132,7 +1143,8 @@ each_chat_container.push("chat-container_"+data.name+"_"+data.id)
   document.getElementById("messageNotice").play();
 
  
- if (msg_notif == 0) {
+ if (msg_notif == 0 ) {
+   
   var client_name_row = document.getElementById(data.user_identity+"_client_name").innerHTML
   //console.log("client_name_row: "+client_name_row)
   client_name_row_trim = client_name_row.trim()

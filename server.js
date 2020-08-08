@@ -3,6 +3,9 @@ var app = express();
 var server = require('http').createServer(app);
 var io = require('socket.io').listen(server);
 const moment = require('moment')
+// sk_test_51HBpyCEz5HkY0yWDo43rEOOmqUiVXjhVFSgXZB1NydskLs0DMVWgeazVrAgQyoHGxorf6hWL76lEt3Z2FzvSK8qH00DPlMh1lg
+const stripe = require('stripe')('sk_test_51HBpyCEz5HkY0yWDo43rEOOmqUiVXjhVFSgXZB1NydskLs0DMVWgeazVrAgQyoHGxorf6hWL76lEt3Z2FzvSK8qH00DPlMh1lg');
+
 //const customer_profile_rr = require("./Model/customer_profile")
 var moment_object = moment()
 var bcrypt = require('bcryptjs')
@@ -12,11 +15,19 @@ const jwt = require('jsonwebtoken')
 const mongoose = require('mongoose')
 const auht_file = require("./Middleware/Auth")
 const adminchat = require('./Model/admin_chat')
-const cookieParser = require('cookie-parser')
+const bodyParser = require('body-parser');
+const cookieParser = require('cookie-parser');
+const { Router } = require('express');
+
+
 
 users = [];
 client_array_online = [];
 var array_token_socketId = []
+
+// Body Parser Middleware
+// app.use(bodyParser.json());
+// app.use(bodyParser.urlencoded({extended:false}));
 
 app.use(express.json())
 app.use(express.urlencoded({ extended: false }))
@@ -24,27 +35,6 @@ app.use(cookieParser())
 
 
 connections = [];
-
-//************************************** */
-
-
-// findBy_Identity = async (name, password) => {
-//   console.log("server findBy_Identity")
-//   const user = await adminchat.findOne({ name: name })
-//   //console.log('user: '+user)
-//   if (!user) {
-//       console.log('Unable to login email')
-//       throw new Error('Unable to login')
-//   }
-//   const isMatch = await bcrypt.compare(password, user.password)
-
-//   if (!isMatch) {
-//       throw new Error('Unable to login password')
-//       console.log('Unable to login')
-//   }
-
-//   return user
-// }
 
 mongoose.connect('mongodb+srv://new_user_one:%39%30%30%31%30%30@customercouter-uk7nd.mongodb.net/test?retryWrites=true&w=majority', {
     useNewUrlParser: true,
@@ -119,28 +109,14 @@ app.use(express.static("Company"));
 
 // view engine that allow us to mix HTM and Javascrip
 app.set('view engine', 'ejs')
-
-// app.get('/', async function(req, res){
-//  console.log("init page")
-//   var cus_profile_instance = new customer_profile({
-//     name: 'tony_req',
-//     email: 'req_tony@gmail.com'
-//   })
-//   await cus_profile_instance.save()
-
-//   const token = await cus_profile_instance.makeToken()
-//   res.cookie('auth_token', token)
-
-//     //res.sendFile('index.html');
-// });
+app.engine('html', require('ejs').renderFile);
 
 app.get('/', async function(req, res) {
-  
+  // check if client have an identifier
   if (req.headers.cookie) {
 
     var cookie_parse = req.headers.cookie;
     
-    //console.log("cookie parse: "+cookie_parse)
 
     var res_str2 = cookie_parse.toString();
     var length_str2 = res_str2.length;
@@ -165,10 +141,14 @@ app.get('/', async function(req, res) {
       }
       
     }
-   // console.log("count: "+how_many_time+" "+" array.length: "+check_token.length)
 
+    
+   console.log(`loop as run ${how_many_time} time \n yes we find a cookie ${slice_str2}`)
+
+        // this user have a token but check 
+        // if it in the database
         if (how_many_time !== check_token.length) {
-        //  console.log("real token, it present in the database, no need to create one")
+          console.log("real token, it present in the database, no need to create one")
 
           var cookie_parse = req.headers.cookie;
        
@@ -177,7 +157,7 @@ app.get('/', async function(req, res) {
            var pos = res_str.search("dn_app_");
            var slice_str = res_str.slice(pos, length_str);
 
-  //  if (slice_str.length > 156) {
+       //  if (slice_str.length > 156) {
  
        var slice_str = slice_str.slice(0, 156);
 
@@ -193,9 +173,7 @@ app.get('/', async function(req, res) {
      for (let index = 0; index < test_chat_req.length; index++) {
  
             if (test_chat_req[index].identifyuser == slice_str) {
-
               
-            //  console.log("chat by this user: "+test_chat_req[index].chat)
             counter2++
  
             if (test_chat_req[index].sender !== "Salesman") {
@@ -223,8 +201,9 @@ app.get('/', async function(req, res) {
 
         }else{
 
-         
-         // console.log("false token, you need to create one")
+         //this user have a token but we couldn't 
+         // find it in the database so we assign a new token
+         console.log("have a token but we couldn't find it in the database")
           var cus_profile_instance = new customer_profile({
             name: 'tony_req',
             email: 'req_tony@gmail.com',
@@ -263,7 +242,8 @@ app.get('/', async function(req, res) {
 
   }else{
 
-   // console.log("init page and assign false")
+    // this user have no identifier, provide one for them
+    console.log("this user have no identifier, provide one for them")
     var cus_profile_instance = new customer_profile({
       name: 'tony_req',
       email: 'req_tony@gmail.com',
@@ -387,6 +367,115 @@ app.get('/adminchat', auht_file ,async function(req, res){
   
 })
 
+
+
+const calculateOrderAmount = items => {
+  // Replace this constant with a calculation of the order's amount
+  // Calculate the order total on the server to prevent
+  // people from directly manipulating the amount on the client
+  return 4300;
+};
+
+var createCustomer = function () {
+  var param = {};
+  param.email = "torimade@gmail.com";
+  param.name = "toromade";
+  param.description = "roses and teddy bear"
+
+  stripe.customers.create(param, function(err, customer) {
+
+  if (err) {
+    console.log("err: "+err)
+  }if (customer) {
+    console.log("success: "+customer)
+  }else{
+   console.log("Something wrong") 
+  }
+    
+  })
+}
+
+    app.post("/form", async (req, res) => {
+        console.log("req.body.name: "+req.body.name)
+    console.log("req.body.paysurname: "+req.body.paysurname )
+    console.log("req.body.payemail: "+req.body.payemail)
+    console.log("req.body.payaddress: "+req.body.payaddress)
+    console.log("req.body.paytypeplace: "+req.body.paytypeplace)
+
+    res.send("good dev")
+    })
+
+app.post("/create-payment-intent", async (req, res) => {
+  const { items } = req.body;
+
+  //createCustomer()
+  // stripe.customers.create({
+  //   email: req.body.stripeEmail,
+  //   source: req.body.stripeToken
+  // }) 
+  console.log("req.body.name: "+req.body.name)
+  console.log("req.body.paysurname: "+req.body.paysurname )
+  console.log("req.body.payemail: "+req.body.payemail)
+  console.log("req.body.payaddress: "+req.body.payaddress)
+  console.log("req.body.paytypeplace: "+req.body.paytypeplace)
+  // Create a PaymentIntent with the order amount and currency
+  const paymentIntent = await stripe.paymentIntents.create({
+    amount: calculateOrderAmount(items),
+    currency: "usd"
+  });
+
+  res.send({
+    clientSecret: paymentIntent.client_secret
+  });
+});
+
+
+      app.post('/charge', (req, res) => {
+        try {
+        console.log("req.body.name: "+req.body.name )
+        console.log("req.body.email: "+req.body.email)
+        console.log("req.body.stripeToken: "+req.body.stripeToken)
+        console.log("req.body.address: "+req.body.Address)
+        console.log("req.body.amount: "+req.body.amount)
+            stripe.customers.create({
+                name: req.body.name,
+                email: req.body.email,
+                source: req.body.stripeToken,
+                'address[line1]': req.body.Address,
+                'address[city]': req.body.Address,
+                'phone': req.body.cellnumber
+            }).then(customer => stripe.charges.create({
+                amount: req.body.amount * 100,
+                currency: 'usd',
+                customer: customer.id,
+                description: 'roses and tulip bouquet'
+            })).then(() => res.render('complete'))
+                .catch(err => {res.render('errorPage') 
+                console.log("*****************\n \n"+err)}  )
+        } catch (err) { res.render('errorPage') }
+      })
+
+
+      app.get('/checkout', (req, res)=>{
+        res.render('checkout')
+      })
+
+// app.post('/charge', (req, res) => {
+//   const amount = 2500;
+
+//   stripe.customers.create({
+//     email: req.body.stripeEmail,
+//     source: req.body.stripeToken
+//   })
+//   .then(customer => stripe.charges.create({
+//     amount: amount,
+//     description: 'rose and tulip bouquet',
+//     currency: 'usd',
+//     customer: customer.id
+//   }))
+//   .then(charge => res.render('success'));
+// })
+
 io.sockets.on('connection', function(socket){
     connections.push(socket);
    // console.log("connections: "+connections[0].id)
@@ -405,6 +494,29 @@ io.sockets.on('connection', function(socket){
       //  console.log("connect[0]: "+connections)
         console.log('Connection: %s sockets connected', connections.length);
     });
+
+    socket.on("html_need_this_client_data", async function(data){
+
+      var check_token = await customer_profile.find({})
+      var how_many_time_false = 0
+      var how_many_time_true = 0
+      for (let index = 0; index < check_token.length; index++) {
+  
+        // only registered client
+        if ( check_token[index].name !== "tony_req" && check_token[index].new_client_token == data /*check_token[index].tokens[0].token == slice_str2 */) {
+         // console.log("yes we find this token")
+         // console.log("check_token[index]: "+check_token[index])
+         how_many_time_true += 1
+        } else {
+         // console.log(index+") no we couldn't find this token")
+         how_many_time_false += 1
+        }
+        
+      }
+  
+      console.log("430 how_many_time_true: "+how_many_time_true+" how_many_time_false: "+how_many_time_false)
+
+    })
 
     socket.on("client_online_token_and_socketId", function(data){
          array_token_socketId.push(data)
@@ -552,7 +664,7 @@ io.sockets.on('connection', function(socket){
         var chat_database = await chat_storage.find({})
         var profile_nameDB_look = await customer_profile.find({})
 
-      // console.log("delete id: "+data)
+       console.log("remove remove remove remove delete id: \n"+data)
 
         for (let index = 0; index < chat_database.length; index++) {
          

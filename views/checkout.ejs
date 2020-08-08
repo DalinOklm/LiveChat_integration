@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link href="https://unpkg.com/tailwindcss@^1.0/dist/tailwind.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <title>FlowerBoss</title>
+</head>
+
+<body class="bg-gray-300">
+    <nav class="bg-pink-400 h-20 flex justify-center">
+        <h1 class="text-white text-5xl">FlowerBoss (beta 1.0 version)</h1>
+    </nav>
+
+    <div class="flex justify-center mt-32">
+        <form action="/charge" method="POST" class="flex flex-col md:w-3/5 sm:w-3/5 bg-gray-400">
+           
+            <h4 class="d-flex justify-content-between align-items-center mb-3">
+                <span class="text-muted">Your cart</span>
+                <span class="badge badge-secondary badge-pill">3</span>
+              </h4>
+              <ul class="list-group mb-3">
+                <li class="list-group-item d-flex justify-content-between lh-condensed">
+                  <div>
+                    <h6 class="my-0">Roses and tulip</h6>
+                    <small class="text-muted">roses bouquet</small>
+                  </div>
+                  <span class="text-muted">R450</span>
+                </li>
+                <li class="list-group-item d-flex justify-content-between lh-condensed">
+                  <div>
+                    <h6 class="my-0">Basket gift</h6>
+                    <small class="text-muted">New born basket</small>
+                  </div>
+                  <span class="text-muted">R890</span>
+                </li>
+                <li class="list-group-item d-flex justify-content-between lh-condensed">
+                  <div>
+                    <h6 class="my-0">Gold ballons</h6>
+                    <small class="text-muted">welcome home ballons</small>
+                  </div>
+                  <span class="text-muted">R570</span>
+                </li>
+               
+                <li class="list-group-item d-flex justify-content-between">
+                  <span>Total (ZAR)</span>
+                  <strong>R1910</strong>
+                </li>
+              </ul>
+           
+            <!-- <input class="bg-transparent text-white bg-gray-600 p-2 h-10 mb-4" type="text" name="name" placeholder="Name">
+            <input type="email" class="bg-transparent text-white p-2 h-10 mb-4" name="email" placeholder="Email">
+            <input class="bg-transparent text-white p-2 h-10 mb-4" type="text" name="amount" placeholder="Amount">  -->
+            <div class="form-group">
+                <input name="name" value="" type="text" class="form-control" placeholder="Name">
+                <input name="email" value="" type="text" class="form-control" placeholder="Email">
+                <input name="amount" value="" type="text" class="form-control" placeholder="Amount">
+                <input name="Address" value="" type="text" class="form-control" placeholder="Address">
+                <input name="cellnumber" value="" type="text" class="form-control" placeholder="phone number">
+                <label for="country">Select place type</label>
+                <select class="custom-select d-block w-100" id="country" required="">
+                  <option name="paytypeplace">residence</option>
+                  <option name="paytypeplace">Flat</option>
+                  <option name="paytypeplace">Business center</option>
+                  <option name="paytypeplace">Estate</option>
+                </select>        
+            </div>
+
+            <div id="card-element" class="bg-transparent text-white p-2 h-10 mb-4"></div>
+            <div id="card-errors" role="alert"></div>
+            <button class="text-white bg-pink-500 p-4 rounded">Submit Payment</button>
+        </form>
+    </div>
+</body>
+
+<script src="https://js.stripe.com/v3/"></script>
+<script src="assets/js/app.js " ></script>
+
+</html>
